@@ -10,6 +10,7 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { AddExerciseFormComponent } from './pages/admin/exercise/add-exercise-form/add-exercise-form.component';
 import { ExerciseListComponent } from './pages/admin/exercise/exercise-list/exercise-list.component';
 import { HeaderComponent } from './shared/components/header/header.component';
+import { PopupComponent } from './shared/components/ui/popup/popup.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HeaderComponent } from './shared/components/header/header.component';
     AdminComponent,
     HeaderComponent,
     AddExerciseFormComponent,
-    ExerciseListComponent
+    ExerciseListComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,62 @@
+.main_list {
+  padding: 20px 50px;
+  background-color: #d6d6d6;
+
+  > article,
+  .exercices {
+    margin: 10px 0;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #b6b6b6;
+  }
+
+  .search_bar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    label {
+      font-size: 18px;
+    }
+
+    input {
+      border: none;
+
+      width: 90%;
+
+      padding: 5px 10px;
+
+      border-radius: 5px;
+      border: 1px solid black;
+    }
+  }
+
+  .filters {
+    background-color: #b6b6b6;
+  }
+
+  .exercices {
+    padding: 20px;
+    padding-top: 0;
+
+    article {
+      padding: 10px 20px;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      list-style: none;
+      font-size: 18px;
+
+      li {
+        padding: 10px 20px;
+
+        border-radius: 5px;
+        background-color: #d1d1d1;
+      }
+    }
+  }
+}

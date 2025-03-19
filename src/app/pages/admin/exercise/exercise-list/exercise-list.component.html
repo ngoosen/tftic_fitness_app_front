@@ -1,0 +1,26 @@
+<section class="main_list">
+  <h2>Liste des exercices</h2>
+
+  <article class="search_bar">
+    <label for="search">Rechercher :</label>
+    <input type="text" name="search" id="search" />
+  </article>
+
+  <article class="filters">
+    <h3>Filtres</h3>
+  </article>
+
+  <section class="exercices">
+    <article>
+      <span>Nom</span>
+    </article>
+
+    <ul>
+      @for (exercise of exercises; track $index) {
+        <li>
+          <p>{{ exercise.exercise_name }}</p>
+        </li>
+      }
+    </ul>
+  </section>
+</section>

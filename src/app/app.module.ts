@@ -1,21 +1,25 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from "@angular/forms";
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { AddExerciseFormComponent } from './pages/admin/exercise/add-exercise-form/add-exercise-form.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminComponent,
-    HeaderComponent
+    HeaderComponent,
+    AddExerciseFormComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),

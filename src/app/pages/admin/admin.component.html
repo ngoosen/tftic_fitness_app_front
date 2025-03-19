@@ -1,1 +1,16 @@
-<p>admin works!</p>
+<main>
+  <h2>Administration</h2>
+
+  <section>
+    <nav>
+      <ul>
+        <li>Exercices</li>
+        <li>Mesures</li>
+        <li>Entraînements</li>
+        <li>Utilisateurs</li>
+      </ul>
+    </nav>
+
+    <app-add-exercise-form [availableMeasures]="measures"></app-add-exercise-form>
+  </section>
+</main>

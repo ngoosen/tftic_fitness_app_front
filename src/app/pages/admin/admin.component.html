@@ -12,6 +12,7 @@
     </nav>
 
     <app-add-exercise-form [availableMeasures]="measures"></app-add-exercise-form>
-    <app-exercise-list [exercises]="exercises"></app-exercise-list>
+
+    <app-exercise-list [exercises]="exercises" (onDelete)="deleteExercise($event)"></app-exercise-list>
   </section>
 </main>

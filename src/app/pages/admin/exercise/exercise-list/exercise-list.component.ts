@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { cleanString } from '../../../../lib/helpers/cleanString';
 import { Exercise } from '../../../../models/exercise.model';
 
@@ -10,9 +10,20 @@ import { Exercise } from '../../../../models/exercise.model';
 })
 export class ExerciseListComponent {
   @Input() exercises: Exercise[] = [];
-  displayedExercises: Exercise[] = [];
 
+  @Output() onUpdate: EventEmitter<Exercise>;
+  @Output() onDelete: EventEmitter<string>;
+
+  displayedExercises: Exercise[] = [];
   displayExercise: string = "";
+
+  exerciseToDeleteId: string = "";
+  exerciseToDeleteName: string = "";
+
+  constructor () {
+    this.onUpdate = new EventEmitter<Exercise>;
+    this.onDelete = new EventEmitter<string>;
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes["exercises"]) {
@@ -53,5 +64,25 @@ export class ExerciseListComponent {
     } else {
       this.displayExercise = exerciseId;
     }
+  }
+
+  updateExerciseHandler(exerciseId: string) {
+    //TODO: implement
+    console.log("🚀 ~ ExerciseListComponent ~ updateExercise ~ exerciseId:", exerciseId);
+  }
+
+  deleteExerciseHandler(exerciseId: string) {
+    this.exerciseToDeleteId = exerciseId;
+    this.exerciseToDeleteName = this.exercises.find(e => e.id === exerciseId)?.exercise_name ?? "";
+  }
+
+  cancelDelete() {
+    this.exerciseToDeleteId = "";
+    this.exerciseToDeleteName = "";
+  }
+
+  confirmDelete() {
+    this.onDelete.emit(this.exerciseToDeleteId);
+    this.cancelDelete();
   }
 }

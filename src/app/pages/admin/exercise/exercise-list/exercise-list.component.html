@@ -1,3 +1,16 @@
+@if (exerciseToDeleteId !== "") {
+  <app-popup>
+    <div class="delete_popup">
+      <h1>Êtes-vous sûr·e de vouloir supprimer "{{ exerciseToDeleteName }}" ?</h1>
+
+      <div>
+        <button (click)="confirmDelete()">Supprimer</button>
+        <button (click)="cancelDelete()">Annuler</button>
+      </div>
+    </div>
+  </app-popup>
+}
+
 <section class="main_list">
   <h2>Liste des exercices</h2>
 
@@ -29,10 +42,10 @@
                 <button (click)="toggleExercise(exercise.id)">
                   <lucide-icon [name]="displayExercise === exercise.id ? 'chevron-up' : 'chevron-down'" [size]="18"></lucide-icon>
                 </button>
-                <button>
+                <button (click)="updateExerciseHandler(exercise.id)">
                   <lucide-icon name="pencil" [size]="18"></lucide-icon>
                 </button>
-                <button>
+                <button (click)="deleteExerciseHandler(exercise.id)">
                   <lucide-icon name="trash-2" [size]="18"></lucide-icon>
                 </button>
               </div>
@@ -54,8 +67,6 @@
                     <h4>Mesures trackables :</h4>
                     <ul>
                       @for (measure of exercise.trackable_measures; track $index) {
-                        <li>{{ measure.measure_name }}</li>
-                        <li>{{ measure.measure_name }}</li>
                         <li>{{ measure.measure_name }}</li>
                       }
                     </ul>

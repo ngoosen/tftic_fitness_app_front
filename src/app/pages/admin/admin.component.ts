@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from '../../../environments/environments';
 import { fakeExercises } from '../../lib/fake-data/exercises.data';
 import { fakeMeasures } from '../../lib/fake-data/measures.data';
 import { Exercise } from '../../models/exercise.model';
@@ -25,26 +26,37 @@ export class AdminComponent {
   }
 
   getMeasures() {
-    this._measureService.getMeasures().subscribe({
-      next: (data) => {
-        this.measures = data;
-      },
-      error: (e) => {
-        console.log(e);
-        this.measures = fakeMeasures;
-      },
-    })
+    if (environment.enableFakeData) {
+      this.measures = fakeMeasures;
+    } else {
+      this._measureService.getMeasures().subscribe({
+        next: (data) => {
+          this.measures = data;
+        },
+        error: (e) => {
+          console.log(e);
+        },
+      });
+    }
   }
 
   getExercises() {
-    this._exerciseService.getExercises().subscribe({
-      next: (data) => {
-        this.exercises = data;
-      },
-      error: (e) => {
-        console.log(e);
-        this.exercises = fakeExercises;
-      }
-    });
+    if (environment.enableFakeData) {
+      this.exercises = fakeExercises;
+    } else {
+      this._exerciseService.getExercises().subscribe({
+        next: (data) => {
+          this.exercises = data;
+        },
+        error: (e) => {
+          console.log(e);
+        }
+      });
+    }
+  }
+
+  deleteExercise(exerciseId: string){
+    //TODO: iomplement
+    console.log("🚀 ~ AdminComponent ~ deleteExercise ~ exerciseId:", exerciseId);
   }
 }

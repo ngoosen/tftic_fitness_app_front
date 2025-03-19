@@ -22,7 +22,47 @@
       <ul>
         @for (exercise of displayedExercises; track $index) {
           <li>
-            <p>{{ exercise.exercise_name }}</p>
+            <div class="exercise_basic_informations">
+              <p>{{ exercise.exercise_name }}</p>
+
+              <div class="actions">
+                <button (click)="toggleExercise(exercise.id)">
+                  <lucide-icon [name]="displayExercise === exercise.id ? 'chevron-up' : 'chevron-down'" [size]="18"></lucide-icon>
+                </button>
+                <button>
+                  <lucide-icon name="pencil" [size]="18"></lucide-icon>
+                </button>
+                <button>
+                  <lucide-icon name="trash-2" [size]="18"></lucide-icon>
+                </button>
+              </div>
+            </div>
+
+            @if (displayExercise === exercise.id) {
+              <hr />
+
+              <div class="exercise_details">
+                @if (exercise.image && exercise.image !== "") {
+                  <img [src]="exercise.image" />
+                }
+
+                <div>
+                  <h4>Description :</h4>
+                  <p>{{ exercise.description }}</p>
+
+                  @if (exercise.trackable_measures.length > 0) {
+                    <h4>Mesures trackables :</h4>
+                    <ul>
+                      @for (measure of exercise.trackable_measures; track $index) {
+                        <li>{{ measure.measure_name }}</li>
+                        <li>{{ measure.measure_name }}</li>
+                        <li>{{ measure.measure_name }}</li>
+                      }
+                    </ul>
+                  }
+                </div>
+              </div>
+            }
           </li>
         }
       </ul>

@@ -12,6 +12,8 @@ export class ExerciseListComponent {
   @Input() exercises: Exercise[] = [];
   displayedExercises: Exercise[] = [];
 
+  displayExercise: string = "";
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes["exercises"]) {
       this.displayedExercises = this.exercises;
@@ -42,6 +44,14 @@ export class ExerciseListComponent {
           return exerciseName.startsWith(value);
         }
       });
+    }
+  }
+
+  toggleExercise(exerciseId: string) {
+    if (this.displayExercise === exerciseId) {
+      this.displayExercise = "";
+    } else {
+      this.displayExercise = exerciseId;
     }
   }
 }

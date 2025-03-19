@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { fakeMeasures } from '../../lib/fake-data/measures.data';
 import { Measure } from '../../models/measure.model';
 import { MeasureService } from '../../tools/services/measure.service';
 
@@ -18,6 +19,7 @@ export class AdminComponent {
       },
       error: (e) => {
         console.log(e);
+        this.measures = fakeMeasures;
       },
     })
   }

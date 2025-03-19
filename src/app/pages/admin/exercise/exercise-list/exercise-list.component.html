@@ -3,7 +3,7 @@
 
   <article class="search_bar">
     <label for="search">Rechercher :</label>
-    <input type="text" name="search" id="search" />
+    <input type="text" name="search" id="search" (input)="search($event)" />
   </article>
 
   <article class="filters">
@@ -11,16 +11,21 @@
   </article>
 
   <section class="exercices">
-    <article>
-      <span>Nom</span>
-    </article>
+    @if (displayedExercises.length === 0) {
+      <p class="no_exercise_found">Aucun exercice trouvé.</p>
+    }
+    @else {
+      <article>
+        <span>Nom</span>
+      </article>
 
-    <ul>
-      @for (exercise of exercises; track $index) {
-        <li>
-          <p>{{ exercise.exercise_name }}</p>
-        </li>
-      }
-    </ul>
+      <ul>
+        @for (exercise of displayedExercises; track $index) {
+          <li>
+            <p>{{ exercise.exercise_name }}</p>
+          </li>
+        }
+      </ul>
+    }
   </section>
 </section>

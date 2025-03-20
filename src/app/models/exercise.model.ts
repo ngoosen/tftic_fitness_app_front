@@ -14,3 +14,11 @@ export interface CreateExerciseDTO {
   image?: string;
   description?: string;
 }
+
+export interface UpdateExerciseDTO {
+  id: string;
+  exercise_name: string;
+  trackable_measures: string[];
+  image?: string;
+  description?: string;
+}

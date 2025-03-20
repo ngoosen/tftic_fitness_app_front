@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { cleanString } from '../../../../lib/helpers/cleanString';
-import { Exercise } from '../../../../models/exercise.model';
+import { Exercise, UpdateExerciseDTO } from '../../../../models/exercise.model';
+import { Measure } from '../../../../models/measure.model';
 
 @Component({
   selector: 'app-exercise-list',
@@ -10,8 +11,9 @@ import { Exercise } from '../../../../models/exercise.model';
 })
 export class ExerciseListComponent {
   @Input() exercises: Exercise[] = [];
+  @Input() availableMeasures: Measure[] = [];
 
-  @Output() onUpdate: EventEmitter<Exercise>;
+  @Output() onUpdate: EventEmitter<UpdateExerciseDTO>;
   @Output() onDelete: EventEmitter<string>;
 
   displayedExercises: Exercise[] = [];
@@ -20,8 +22,15 @@ export class ExerciseListComponent {
   exerciseToDeleteId: string = "";
   exerciseToDeleteName: string = "";
 
+  exerciseToUpdateId: string = "";
+  exerciseToUpdateName: string = "";
+  exerciseToUpdateImage: string = "";
+  exerciseToUpdateDescription: string = "";
+  exerciseToUpdateMeasures: Measure[] = [];
+  updateIsInvalid: boolean = false;
+
   constructor () {
-    this.onUpdate = new EventEmitter<Exercise>;
+    this.onUpdate = new EventEmitter<UpdateExerciseDTO>;
     this.onDelete = new EventEmitter<string>;
   }
 
@@ -67,8 +76,62 @@ export class ExerciseListComponent {
   }
 
   updateExerciseHandler(exerciseId: string) {
-    //TODO: implement
-    console.log("🚀 ~ ExerciseListComponent ~ updateExercise ~ exerciseId:", exerciseId);
+    if (this.exerciseToUpdateId === exerciseId) {
+      this.displayExercise = "";
+      this.exerciseToUpdateId = "";
+      this.exerciseToUpdateName = "";
+      this.exerciseToUpdateImage = "";
+      this.exerciseToUpdateDescription = "";
+      this.exerciseToUpdateMeasures = [];
+      return;
+    }
+
+    const exercise = this.exercises.find(e => e.id === exerciseId);
+    if (!exercise) return;
+
+    this.displayExercise = exerciseId;
+
+    this.exerciseToUpdateId = exerciseId;
+    this.exerciseToUpdateName = exercise.exercise_name;
+    this.exerciseToUpdateImage = exercise.image;
+    this.exerciseToUpdateDescription = exercise.description;
+    this.exerciseToUpdateMeasures = [...exercise.trackable_measures];
+  }
+
+  addUpdatedMeasures(event: any) {
+    if (!event.target.value) return;
+
+    const value = event.target.value;
+    const measure = this.availableMeasures.find(m => m.id === value);
+    const existingMeasure = this.exerciseToUpdateMeasures.find(m => m.id === value);
+
+    if (measure && !existingMeasure) {
+      this.exerciseToUpdateMeasures.push(measure);
+    }
+  }
+
+  removeFromUpdatedMeasures(measureId: string) {
+    this.exerciseToUpdateMeasures = this.exerciseToUpdateMeasures.filter(m => m.id !== measureId);
+  }
+
+  confirmUpdate() {
+    if (this.exerciseToUpdateName === "") {
+      this.updateIsInvalid = true;
+      return;
+    }
+
+    this.updateIsInvalid = false;
+
+    const newExercise: UpdateExerciseDTO = {
+      id: this.exerciseToUpdateId,
+      exercise_name: this.exerciseToUpdateName,
+      image: this.exerciseToUpdateImage,
+      description: this.exerciseToUpdateDescription,
+      trackable_measures: this.exerciseToUpdateMeasures.map(m => m.id),
+    };
+
+    this.onUpdate.emit(newExercise);
+    this.updateExerciseHandler(this.exerciseToUpdateId);
   }
 
   deleteExerciseHandler(exerciseId: string) {

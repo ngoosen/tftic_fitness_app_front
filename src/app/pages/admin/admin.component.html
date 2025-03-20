@@ -18,7 +18,9 @@
 
     <app-exercise-list
       [exercises]="exercises"
+      [availableMeasures]="measures"
       (onDelete)="deleteExercise($event)"
+      (onUpdate)="updateExercise($event)"
     ></app-exercise-list>
   </section>
 </main>

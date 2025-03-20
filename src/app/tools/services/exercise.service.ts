@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environments';
-import { CreateExerciseDTO, Exercise } from '../../models/exercise.model';
+import { CreateExerciseDTO, Exercise, UpdateExerciseDTO } from '../../models/exercise.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,7 @@ export class ExerciseService {
     return this._http.post<Exercise>(`${this.baseUrl}/exercise`, newExercise);
   }
 
-  updateExercise(newExercise: Exercise): Observable<Exercise> {
+  updateExercise(newExercise: UpdateExerciseDTO): Observable<Exercise> {
     return this._http.patch<Exercise>(`${this.baseUrl}/exercise/${newExercise.id}`, newExercise);
   }
 

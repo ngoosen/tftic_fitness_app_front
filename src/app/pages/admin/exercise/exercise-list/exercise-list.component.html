@@ -36,7 +36,12 @@
         @for (exercise of displayedExercises; track $index) {
           <li>
             <div class="exercise_basic_informations">
-              <p>{{ exercise.exercise_name }}</p>
+              @if (exercise.id === exerciseToUpdateId) {
+                <input type="text" [(ngModel)]="exerciseToUpdateName" [ngClass]="updateIsInvalid ? 'invalid' : ''" (input)="updateIsInvalid = false" />
+              }
+              @else {
+                <p>{{ exercise.exercise_name }}</p>
+              }
 
               <div class="actions">
                 <button (click)="toggleExercise(exercise.id)">
@@ -55,22 +60,55 @@
               <hr />
 
               <div class="exercise_details">
-                @if (exercise.image && exercise.image !== "") {
+                @if (exercise.id === exerciseToUpdateId) {
+                  <input type="text" [(ngModel)]="exerciseToUpdateImage" />
+                }
+                @else if (exercise.image && exercise.image !== "") {
                   <img [src]="exercise.image" />
                 }
 
                 <div>
                   <h4>Description :</h4>
-                  <p>{{ exercise.description }}</p>
 
-                  @if (exercise.trackable_measures.length > 0) {
+                  @if (exercise.id === exerciseToUpdateId) {
+                    <textarea rows="4" [maxLength]="1000">{{ exerciseToUpdateDescription }}</textarea>
+                  }
+                  @else {
+                    <p>{{ exercise.description }}</p>
+                  }
+
+                  @if (exercise.id === exerciseToUpdateId) {
+                    <h4>Modifier les mesures trackables :</h4>
+                    <select class="update_measures_select" (change)="addUpdatedMeasures($event)">
+                      <option disabled [defaultSelected]="true">Ajouter une mesure</option>
+
+                      @for (measure of availableMeasures; track $index) {
+                        <option [value]="measure.id">{{ measure.measure_name }}</option>
+                      }
+                    </select>
+
+                    <ul class="updated_measures">
+                      @for (measure of exerciseToUpdateMeasures; track $index) {
+                        <li>
+                          <p>{{ measure.measure_name }}</p>
+                          <button (click)="removeFromUpdatedMeasures(measure.id)">x</button>
+                        </li>
+                      }
+                    </ul>
+                  }
+                  @else if (exercise.trackable_measures.length > 0) {
                     <h4>Mesures trackables :</h4>
-                    <ul>
+                    <ul class="trackable_measures">
                       @for (measure of exercise.trackable_measures; track $index) {
                         <li>{{ measure.measure_name }}</li>
                       }
                     </ul>
                   }
+
+                  <button class="confirm_update_button" (click)="confirmUpdate()">
+                    Confirmer la modification
+                    <lucide-icon class="icon" name="check"></lucide-icon>
+                  </button>
                 </div>
               </div>
             }

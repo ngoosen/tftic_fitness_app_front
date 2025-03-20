@@ -72,6 +72,22 @@
               border-radius: 5px;
             }
           }
+
+          input {
+            width: 70%;
+
+            padding: 5px 10px;
+
+            font-size: 18px;
+
+            border: none;
+            border-radius: 5px;
+          }
+
+          .invalid {
+            outline: 2px solid #ff0000;
+            background-color: #ffdcdc;
+          }
         }
 
         hr {
@@ -93,6 +109,8 @@
           }
 
           div {
+            width: 100%;
+
             h4 {
               margin: 10px 0;
               font-size: 15px;
@@ -102,7 +120,8 @@
               }
             }
 
-            ul {
+            .trackable_measures,
+            .updated_measures {
               display: flex;
               flex-wrap: wrap;
               gap: 10px;
@@ -117,6 +136,86 @@
                 border-radius: 5px;
                 background-color: #b6b6b6;
               }
+            }
+
+            .update_measures_select {
+              width: 60%;
+              padding: 5px;
+              border: none;
+              border-radius: 5px;
+            }
+
+            .updated_measures {
+              margin-top: 10px;
+
+              li {
+                display: flex;
+
+                padding: 0;
+
+                font-size: 14px;
+
+                p {
+                  margin: 5px 10px;
+                }
+
+                button {
+                  padding: 5px 10px;
+                  background-color: transparent;
+
+                  &:hover {
+                    cursor: pointer;
+                  }
+                }
+              }
+            }
+          }
+
+          input {
+            max-width: 300px;
+            height: fit-content;
+
+            padding: 5px 10px;
+
+            font-size: 16px;
+
+            border: none;
+            border-radius: 5px;
+          }
+
+          textarea {
+            width: 100%;
+
+            padding: 5px 10px;
+
+            font-size: 16px;
+
+            border: none;
+            border-radius: 5px;
+          }
+
+          .confirm_update_button {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            margin-top: 20px;
+            padding: 5px 25px;
+            padding-right: 20px;
+
+            font-size: 16px;
+
+            border-radius: 5px;
+
+            color: #ffffff;
+            background-color: #008000;
+
+            .icon {
+              transform: translateY(2px);
+            }
+
+            &:hover {
+              background-color: #0fa70f;
             }
           }
         }

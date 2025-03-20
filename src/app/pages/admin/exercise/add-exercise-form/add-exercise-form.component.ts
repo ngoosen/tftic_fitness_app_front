@@ -47,9 +47,9 @@ export class AddExerciseFormComponent {
     this.nameInvalidClass = "";
 
     const newExercise: CreateExerciseDTO = {
-      exercise_name: this.name,
-      description: this.description,
-      image: this.imageLink,
+      exercise_name: this.name.trim(),
+      description: this.description.trim(),
+      image: this.imageLink.trim(),
       trackable_measures: this.measures.map(m => m.id),
     };
 

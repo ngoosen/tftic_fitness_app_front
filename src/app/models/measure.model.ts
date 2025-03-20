@@ -3,3 +3,8 @@ export interface Measure {
   measure_name: string;
   unit: string;
 }
+
+export interface CreateMeasureDTO {
+  measure_name: string;
+  unit: string;
+}

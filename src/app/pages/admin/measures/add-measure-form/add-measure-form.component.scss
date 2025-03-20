@@ -1,0 +1,115 @@
+$side_margin: 100px;
+$top_margin: 20px;
+
+.toggle_button {
+  width: calc(100% - (2 * $side_margin));
+
+  margin: $top_margin $side_margin;
+  padding: 10px;
+
+  font-size: 20px;
+
+  border-radius: 10px;
+  background-color: #dddddd;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #cccccc;
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+
+  margin: 0 calc($side_margin + 10px);
+  padding: 20px;
+
+  border-radius: 0 0 10px 10px;
+  background-color: #ffffff;
+
+  transform: translateY(-$top_margin);
+
+  $label_width: 170px;
+
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 50%;
+
+    label {
+      display: inline-block;
+
+      width: $label_width;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    input {
+      width: calc(100% - $label_width);
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid black;
+    }
+
+    .invalid {
+      border-color: #ff0000;
+      outline: 2px solid #ff0000;
+      background-color: #ffdada;
+    }
+
+    &:has(input.invalid)::after {
+      position: relative;
+      top: 2px;
+      left: $label_width + 5px;
+
+      width: 50%;
+
+      padding: 3px 15px;
+
+      content: "Le champs est requis pour ajouter une mesure.";
+      font-size: 14px;
+
+      border-radius: 0 0 5px 5px;
+      background-color: #ffc7c7;
+    }
+  }
+
+  section {
+    display: flex;
+    gap: 20px;
+
+    width: 50%;
+
+    button {
+      padding: 10px;
+
+      font-size: 17px;
+
+      border-radius: 5px;
+
+      &:first-of-type {
+        width: 70%;
+        background-color: #7e7e7e;
+
+        &:hover {
+          background-color: #636363;
+        }
+      }
+
+      &:last-of-type {
+        width: 30%;
+        background-color: #a7a7a7;
+
+        &:hover {
+          background-color: #969696;
+        }
+      }
+    }
+  }
+}

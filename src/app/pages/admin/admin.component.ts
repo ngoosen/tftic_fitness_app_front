@@ -3,7 +3,7 @@ import { environment } from '../../../environments/environments';
 import { fakeExercises } from '../../lib/fake-data/exercises.data';
 import { fakeMeasures } from '../../lib/fake-data/measures.data';
 import { CreateExerciseDTO, Exercise, UpdateExerciseDTO } from '../../models/exercise.model';
-import { Measure } from '../../models/measure.model';
+import { CreateMeasureDTO, Measure } from '../../models/measure.model';
 import { ExerciseService } from '../../tools/services/exercise.service';
 import { MeasureService } from '../../tools/services/measure.service';
 
@@ -99,5 +99,16 @@ export class AdminComponent {
 
   changeTab(tabname: string) {
     this.displayedTab = tabname as Tab;
+  }
+
+  createMeasure(newMeasure: CreateMeasureDTO) {
+    this._measureService.createMeasure(newMeasure).subscribe({
+      next: (result) => {
+        this.getMeasures();
+      },
+      error: (e) => {
+        console.log(e);
+      },
+    });
   }
 }

@@ -73,6 +73,10 @@ export class ExerciseListComponent {
     } else {
       this.displayExercise = exerciseId;
     }
+
+    if (this.exerciseToUpdateId === exerciseId) {
+      this.exerciseToUpdateId = "";
+    }
   }
 
   updateExerciseHandler(exerciseId: string) {

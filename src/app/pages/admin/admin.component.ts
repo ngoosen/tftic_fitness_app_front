@@ -58,7 +58,7 @@ export class AdminComponent {
   createExercise(newExercise: CreateExerciseDTO) {
     this._exerciseService.createExercise(newExercise).subscribe({
       next: (result) => {
-        console.log(result);
+        this.getExercises();
       },
       error: (e) => {
         console.log(e);
@@ -67,7 +67,13 @@ export class AdminComponent {
   }
 
   deleteExercise(exerciseId: string){
-    //TODO: implement
-    console.log("🚀 ~ AdminComponent ~ deleteExercise ~ exerciseId:", exerciseId);
+    this._exerciseService.deleteExercise(exerciseId).subscribe({
+      next: (result) => {
+        this.getExercises();
+      },
+      error: (e) => {
+        console.log(e);
+      },
+    });
   }
 }

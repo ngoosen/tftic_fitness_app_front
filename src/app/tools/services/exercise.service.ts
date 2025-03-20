@@ -20,8 +20,8 @@ export class ExerciseService {
     return this._http.get<Exercise>(`${this.baseUrl}/exercise/${exerciseId}`);
   }
 
-  createExercise(newExercise: CreateExerciseDTO): Observable<CreateExerciseDTO> {
-    return this._http.post<CreateExerciseDTO>(`${this.baseUrl}/exercise`, newExercise);
+  createExercise(newExercise: CreateExerciseDTO): Observable<Exercise> {
+    return this._http.post<Exercise>(`${this.baseUrl}/exercise`, newExercise);
   }
 
   updateExercise(newExercise: Exercise): Observable<Exercise> {

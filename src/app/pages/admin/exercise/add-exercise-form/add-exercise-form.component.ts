@@ -54,6 +54,11 @@ export class AddExerciseFormComponent {
     };
 
     this.onAddExercise.emit(newExercise);
+
+    this.name = "";
+    this.imageLink = "";
+    this.description = "";
+    this.measures = [];
   }
 
   addValueToMeasures(event: any) {

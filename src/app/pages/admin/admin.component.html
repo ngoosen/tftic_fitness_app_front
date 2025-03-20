@@ -4,23 +4,25 @@
   <section>
     <nav>
       <ul>
-        <li>Exercices</li>
-        <li>Mesures</li>
-        <li>Entraînements</li>
-        <li>Utilisateurs</li>
+        <li (click)="changeTab('exercises')">Exercices</li>
+        <li (click)="changeTab('measures')">Mesures</li>
+        <li (click)="changeTab('training_sessions')">Entraînements</li>
+        <li (click)="changeTab('users')">Utilisateurs</li>
       </ul>
     </nav>
 
-    <app-add-exercise-form
+    @if (displayedTab === "exercises") {
+      <app-add-exercise-form
       [availableMeasures]="measures"
       (onAddExercise)="createExercise($event)"
-    ></app-add-exercise-form>
+      ></app-add-exercise-form>
 
-    <app-exercise-list
+      <app-exercise-list
       [exercises]="exercises"
       [availableMeasures]="measures"
       (onDelete)="deleteExercise($event)"
       (onUpdate)="updateExercise($event)"
-    ></app-exercise-list>
+      ></app-exercise-list>
+    }
   </section>
 </main>

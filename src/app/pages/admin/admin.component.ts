@@ -7,6 +7,13 @@ import { Measure } from '../../models/measure.model';
 import { ExerciseService } from '../../tools/services/exercise.service';
 import { MeasureService } from '../../tools/services/measure.service';
 
+enum Tab {
+  EXERCISES = "exercises",
+  MEASURES = "measures",
+  TRAINING_SESSIONS = "training_sessions",
+  USERS = "users",
+}
+
 @Component({
   selector: 'app-admin',
   standalone: false,
@@ -16,6 +23,8 @@ import { MeasureService } from '../../tools/services/measure.service';
 export class AdminComponent {
   measures: Measure[] = [];
   exercises: Exercise[] = [];
+
+  displayedTab: Tab = Tab.EXERCISES;
 
   constructor (
     private _measureService: MeasureService,
@@ -86,5 +95,9 @@ export class AdminComponent {
         console.log(e);
       },
     });
+  }
+
+  changeTab(tabname: string) {
+    this.displayedTab = tabname as Tab;
   }
 }

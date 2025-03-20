@@ -7,3 +7,10 @@ export interface Exercise {
   description: string;
   trackable_measures: Measure[];
 }
+
+export interface CreateExerciseDTO {
+  exercise_name: string;
+  trackable_measures: string[];
+  image?: string;
+  description?: string;
+}

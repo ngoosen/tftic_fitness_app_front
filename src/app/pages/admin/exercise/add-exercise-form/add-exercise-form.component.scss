@@ -36,6 +36,7 @@ form {
 
   div {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     width: 50%;
 
@@ -64,6 +65,28 @@ form {
     textarea {
       border-radius: 5px;
       border: 1px solid black;
+    }
+
+    .invalid {
+      border-color: #ff0000;
+      outline: 2px solid #ff0000;
+      background-color: #ffdada;
+    }
+
+    &:has(input.invalid)::after {
+      position: relative;
+      top: 2px;
+      left: $label_width + 5px;
+
+      width: 50%;
+
+      padding: 3px 15px;
+
+      content: "Le nom est requis pour ajouter un exercice.";
+      font-size: 14px;
+
+      border-radius: 0 0 5px 5px;
+      background-color: #ffc7c7;
     }
   }
 

@@ -4,7 +4,7 @@
   <form>
     <div>
       <label for="exercise_name">Nom :</label>
-      <input type="text" name="exercise_name" id="exercise_name" [(ngModel)]="name" />
+      <input type="text" name="exercise_name" id="exercise_name" [(ngModel)]="name" [ngClass]="nameInvalidClass" (input)="nameInvalidClass = ''" />
     </div>
     <div>
       <label for="exercise_image">Image :</label>
@@ -16,11 +16,11 @@
     </div>
     <div>
       <label for="exercise_measures">Mesures :</label>
-      <select name="exercise_measures" id="exercise_measures">
+      <select name="exercise_measures" id="exercise_measures" (change)="addValueToMeasures($event)">
         <option disabled [defaultSelected]="true">Sélectionnez une mesure</option>
 
         @for (measure of availableMeasures; track $index) {
-          <option [value]="measure.id" (click)="addValueToMeasures(measure.id)">{{ measure.measure_name }}</option>
+          <option [value]="measure.id">{{ measure.measure_name }}</option>
         }
       </select>
     </div>

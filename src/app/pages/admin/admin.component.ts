@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { environment } from '../../../environments/environments';
 import { fakeExercises } from '../../lib/fake-data/exercises.data';
 import { fakeMeasures } from '../../lib/fake-data/measures.data';
-import { Exercise } from '../../models/exercise.model';
+import { CreateExerciseDTO, Exercise } from '../../models/exercise.model';
 import { Measure } from '../../models/measure.model';
 import { ExerciseService } from '../../tools/services/exercise.service';
 import { MeasureService } from '../../tools/services/measure.service';
@@ -55,8 +55,19 @@ export class AdminComponent {
     }
   }
 
+  createExercise(newExercise: CreateExerciseDTO) {
+    this._exerciseService.createExercise(newExercise).subscribe({
+      next: (result) => {
+        console.log(result);
+      },
+      error: (e) => {
+        console.log(e);
+      },
+    });
+  }
+
   deleteExercise(exerciseId: string){
-    //TODO: iomplement
+    //TODO: implement
     console.log("🚀 ~ AdminComponent ~ deleteExercise ~ exerciseId:", exerciseId);
   }
 }

@@ -83,7 +83,12 @@
           gap: 25px;
 
           img {
+            max-width: 300px;
             height: 250px;
+
+            object-fit: cover;
+            object-position: 50%;
+
             border-radius: 5px;
           }
 

@@ -1,0 +1,40 @@
+<section>
+  <h2>Liste des mesures</h2>
+
+  @if (measures.length === 0) {
+    <p>Aucune mesure.</p>
+  }
+  @else {
+    <ul>
+      <li>
+        <div>
+          <p>Nom</p>
+          <p>Unité de mesure</p>
+        </div>
+
+        <p>Actions</p>
+      </li>
+
+      @for (measure of measures; track $index) {
+        <li>
+          <div>
+            @if (measureToUpdateId === measure.id) {
+              <input type="text" [(ngModel)]="measureToUpdateName" />
+              <input type="text" [(ngModel)]="measureToUpdateUnit" />
+            }
+            @else {
+              <p>{{ measure.measure_name }}</p>
+              <p>{{ measure.unit }}</p>
+            }
+          </div>
+
+          <div class="actions">
+            <button (click)="toggleUpdate(measure.id)">
+              <lucide-icon name="pencil" [size]="18"></lucide-icon>
+            </button>
+          </div>
+        </li>
+      }
+    </ul>
+  }
+</section>

@@ -1,0 +1,56 @@
+section {
+  padding: 20px 50px;
+  background-color: #d6d6d6;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    list-style: none;
+    font-size: 18px;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+
+      width: 100%;
+
+      padding: 10px 20px;
+
+      border-radius: 5px;
+      background-color: #b6b6b6;
+
+      div {
+        display: flex;
+        gap: 10px;
+
+        p:first-of-type,
+        input:first-of-type {
+          width: 300px;
+        }
+
+        input {
+          padding: 5px 10px;
+
+          border: none;
+          border-radius: 5px;
+        }
+      }
+
+      &:first-of-type {
+        margin-top: 20px;
+        padding: 0 20px;
+
+        background-color: transparent;
+      }
+
+      .actions {
+        button {
+          padding: 5px;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}

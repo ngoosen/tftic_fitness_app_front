@@ -27,6 +27,7 @@
 
     @if (displayedTab === "measures") {
       <app-add-measure-form (onAdd)="createMeasure($event)"></app-add-measure-form>
+      <app-measures-list [measures]="measures"></app-measures-list>
     }
   </section>
 </main>

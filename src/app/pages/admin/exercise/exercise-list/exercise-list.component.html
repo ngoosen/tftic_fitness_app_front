@@ -105,10 +105,12 @@
                     </ul>
                   }
 
-                  <button class="confirm_update_button" (click)="confirmUpdate()">
-                    Confirmer la modification
-                    <lucide-icon class="icon" name="check"></lucide-icon>
-                  </button>
+                  @if (exerciseToUpdateId === exercise.id) {
+                    <button class="confirm_update_button" (click)="confirmUpdate()">
+                      Confirmer la modification
+                      <lucide-icon class="icon" name="check"></lucide-icon>
+                    </button>
+                  }
                 </div>
               </div>
             }

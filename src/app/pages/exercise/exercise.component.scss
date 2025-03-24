@@ -1,0 +1,55 @@
+main {
+  display: flex;
+  flex-direction: column;
+
+  margin: 20px 100px;
+  padding: 20px 30px;
+
+  h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  .image_description {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    img {
+      width: 45%;
+    }
+
+    ol {
+      width: 45%;
+
+      li {
+        margin: 10px 0;
+      }
+    }
+  }
+
+  .add_to_training_button {
+    align-self: center;
+
+    margin: 20px 0;
+    padding: 10px 30px;
+
+    font-size: 18px;
+
+    border-radius: 50px;
+  }
+
+  .series_section {
+    margin: 20px;
+    padding: 30px;
+
+    border-radius: 10px;
+    background-color: #bebebe;
+
+    table {
+      td {
+        border: 2px solid chartreuse;
+      }
+    }
+  }
+}

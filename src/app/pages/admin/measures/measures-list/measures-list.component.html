@@ -19,8 +19,8 @@
         <li>
           <div>
             @if (measureToUpdateId === measure.id) {
-              <input type="text" [(ngModel)]="measureToUpdateName" />
-              <input type="text" [(ngModel)]="measureToUpdateUnit" />
+              <input type="text" [(ngModel)]="measureToUpdateName" [maxlength]="50" />
+              <input type="text" [(ngModel)]="measureToUpdateUnit" [maxlength]="10" />
             }
             @else {
               <p>{{ measure.measure_name }}</p>
@@ -29,9 +29,16 @@
           </div>
 
           <div class="actions">
-            <button (click)="toggleUpdate(measure.id)">
-              <lucide-icon name="pencil" [size]="18"></lucide-icon>
-            </button>
+            @if (measureToUpdateId === measure.id) {
+              <button class="confirm_update" (click)="confirmUpdate()">
+                <lucide-icon name="check" [size]="18" [strokeWidth]="3"></lucide-icon>
+              </button>
+            }
+            @else {
+              <button (click)="toggleUpdate(measure.id)">
+                <lucide-icon name="pencil" [size]="18"></lucide-icon>
+              </button>
+            }
           </div>
         </li>
       }

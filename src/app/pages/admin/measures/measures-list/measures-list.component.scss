@@ -33,6 +33,8 @@ section {
         input {
           padding: 5px 10px;
 
+          font-size: 18px;
+
           border: none;
           border-radius: 5px;
         }
@@ -49,6 +51,11 @@ section {
         button {
           padding: 5px;
           border-radius: 5px;
+        }
+
+        .confirm_update {
+          color: #ffffff;
+          background-color: green;
         }
       }
     }

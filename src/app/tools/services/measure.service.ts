@@ -19,4 +19,11 @@ export class MeasureService {
   createMeasure(newMeasure: CreateMeasureDTO): Observable<Measure> {
     return this._http.post<Measure>(`${this.baseUrl}/measure`, newMeasure);
   }
+
+  updateMeasure(newMeasure: Measure): Observable<Measure> {
+    return this._http.patch<Measure>(`${this.baseUrl}/measure/${newMeasure.id}`, {
+      measure_name: newMeasure.measure_name,
+      unit: newMeasure.unit,
+    });
+  }
 }

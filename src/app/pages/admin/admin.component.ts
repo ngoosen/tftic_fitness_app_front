@@ -111,4 +111,15 @@ export class AdminComponent {
       },
     });
   }
+
+  updateMeasure(newMeasure: Measure) {
+    this._measureService.updateMeasure(newMeasure).subscribe({
+      next: (result) => {
+        this.getMeasures();
+      },
+      error: (e) => {
+        console.log(e);
+      },
+    });
+  }
 }

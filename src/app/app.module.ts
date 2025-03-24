@@ -13,6 +13,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { PopupComponent } from './shared/components/ui/popup/popup.component';
 import { AddMeasureFormComponent } from './pages/admin/measures/add-measure-form/add-measure-form.component';
 import { MeasuresListComponent } from './pages/admin/measures/measures-list/measures-list.component';
+import { ExerciseComponent } from './pages/exercise/exercise.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MeasuresListComponent } from './pages/admin/measures/measures-list/meas
     ExerciseListComponent,
     PopupComponent,
     AddMeasureFormComponent,
-    MeasuresListComponent
+    MeasuresListComponent,
+    ExerciseComponent
   ],
   imports: [
     BrowserModule,

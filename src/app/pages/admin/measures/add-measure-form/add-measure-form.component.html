@@ -9,7 +9,7 @@
 
     <div>
       <label for="measure_unit">Unité de mesure :</label>
-      <input type="text" name="measure_unit" id="measure_unit" [(ngModel)]="measureUnit" [ngClass]="unitIsInvalid ? 'invalid' : ''" (input)="unitIsInvalid = false" [maxLength]="10" />
+      <input type="text" name="measure_unit" id="measure_unit" [(ngModel)]="measureUnit" [maxLength]="10" />
     </div>
 
     <section>

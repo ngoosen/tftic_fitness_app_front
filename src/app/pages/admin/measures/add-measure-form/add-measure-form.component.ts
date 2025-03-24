@@ -16,7 +16,6 @@ export class AddMeasureFormComponent {
   measureUnit: string = "";
 
   nameIsInvalid: boolean = false;
-  unitIsInvalid: boolean = false;
 
   constructor() {
     this.onAdd = new EventEmitter<CreateMeasureDTO>;
@@ -27,9 +26,8 @@ export class AddMeasureFormComponent {
   }
 
   addMeasure() {
-    if (this.measureName === "" || this.measureUnit === "") {
+    if (this.measureName === "") {
       this.nameIsInvalid = this.measureName === "";
-      this.unitIsInvalid = this.measureUnit === "";
       return;
     }
 

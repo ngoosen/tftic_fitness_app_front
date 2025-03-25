@@ -3,7 +3,7 @@ import { FormsModule } from "@angular/forms";
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { Check, ChevronDown, ChevronUp, CirclePlus, LucideAngularModule, Minus, Pencil, Trash2 } from 'lucide-angular';
+import { Bike, Check, ChevronDown, ChevronUp, CirclePlus, LucideAngularModule, Minus, Pencil, Trash2, User } from 'lucide-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './pages/admin/admin.component';
@@ -38,7 +38,9 @@ import { PopupComponent } from './shared/components/ui/popup/popup.component';
       ChevronUp,
       Check,
       Minus,
-      CirclePlus
+      CirclePlus,
+      Bike,
+      User,
     }),
   ],
   providers: [

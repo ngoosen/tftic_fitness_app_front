@@ -1,4 +1,100 @@
+$header_background_color: #808080;
+
 header {
-  padding: 15px 30px;
-  background-color: #808080;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 60px;
+
+  padding: 0 30px;
+  background-color: $header_background_color;
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 40px;
+    width: 40px;
+
+    border-radius: 5px;
+    background-color: #ffffff;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  nav {
+    height: 100%;
+
+    ul {
+      display: flex;
+      align-items: center;
+
+      height: 100%;
+
+      list-style: none;
+
+      li {
+        display: flex;
+        align-items: center;
+
+        height: 100%;
+
+        padding: 0 20px;
+
+        border: solid $header_background_color;
+        border-width: 3px 0;
+
+        a {
+          color: black;
+          text-decoration: none;
+        }
+
+        &:hover {
+          cursor: pointer;
+          border-bottom: 3px solid #000000;
+        }
+      }
+    }
+  }
+
+  .user {
+    .logged_in {
+      display: flex;
+      align-items: center;
+
+      .user_avatar {
+        margin-left: 15px;
+        padding: 5px;
+
+        border-radius: 50px;
+        border: 2px solid $header_background_color;
+        outline: 1px solid $header_background_color;
+      }
+
+      &:hover {
+        cursor: pointer;
+
+        .username{
+          color: #ffffff;
+          text-decoration: underline;
+        }
+
+        .user_avatar {
+          outline-color: #ffffff;
+        }
+      }
+    }
+
+    .login_button {
+      padding: 5px 20px;
+
+      font-size: 14px;
+
+      border-radius: 50px;
+    }
+  }
 }

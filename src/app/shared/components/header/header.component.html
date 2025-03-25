@@ -1,3 +1,30 @@
 <header>
-  <h1>Header</h1>
+  <div class="logo">
+    <lucide-icon name="bike"></lucide-icon>
+  </div>
+
+  <nav>
+    <ul>
+      <li>
+        <a href="/exercise">Exercises</a>
+      </li>
+      <li>
+        <a href="/admin">Admin</a>
+      </li>
+    </ul>
+  </nav>
+
+  <section class="user">
+    @if (displayLoggedInUser) {
+      <section class="logged_in">
+        <p (click)="toggleLoggedIn()" class="username">Jane Doe</p>
+        <button (click)="toggleLoggedIn()" class="user_avatar">
+          <lucide-icon name="user"></lucide-icon>
+        </button>
+      </section>
+    }
+    @else {
+      <button (click)="toggleLoggedIn()" class="login_button">Se connecter</button>
+    }
+  </section>
 </header>

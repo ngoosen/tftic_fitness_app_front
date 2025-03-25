@@ -46,6 +46,11 @@ export class ExerciseComponent {
     this.displaySeries = !this.displaySeries;
   }
 
+  cancel() {
+    this.displaySeries = false;
+    this.enteredValues = [];
+  }
+
   addSeries() {
     const cell = this.exercise.trackable_measures.map(measure => {
       return {

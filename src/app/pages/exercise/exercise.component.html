@@ -18,10 +18,12 @@
       <section class="series_section">
         <table>
           <thead>
-            @for (measure of exercise.trackable_measures; track $index) {
-              <td>{{ measure.measure_name }}</td>
+            @if (enteredValues.length > 0) {
+              @for (measure of exercise.trackable_measures; track $index) {
+                <td>{{ measure.measure_name }}</td>
+              }
+              <td>Répétitions</td>
             }
-            <td>Répétitions</td>
           </thead>
 
           <tbody>
@@ -29,24 +31,32 @@
               <tr>
                 @for (measure of series; track measure.id) {
                   <td>
-                    <input type="number" [(ngModel)]="measure.value" />
+                    <input type="number" [(ngModel)]="measure.value" min="0" />
                     <label>{{ measure.unit }}</label>
                   </td>
                 }
 
                 <td>
-                  <button (click)="removeSeries(id)">-</button>
+                  <button (click)="removeSeries(id)">
+                    <lucide-icon name="minus" [size]="10"></lucide-icon>
+                  </button>
                 </td>
               </tr>
             }
           </tbody>
         </table>
 
-        <button (click)="addSeries()">Ajouter une série</button>
+        <button (click)="addSeries()" class="add_series_button">
+          Ajouter une série
+          <lucide-icon name="circle-plus" [size]="18" class="icon"></lucide-icon>
+        </button>
 
-        <article>
-          <button (click)="toggleSeries()">Annuler</button>
-          <button>Terminé</button>
+        <article class="actions">
+          <button (click)="cancel()">Annuler</button>
+          <button>
+            Terminé
+            <lucide-icon name="check" [size]="16" class="icon"></lucide-icon>
+          </button>
         </article>
       </section>
     }

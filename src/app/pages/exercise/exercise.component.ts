@@ -72,4 +72,8 @@ export class ExerciseComponent {
   removeSeries(index: number) {
     this.enteredValues.splice(index, 1);
   }
+
+  addExerciseToTrainingSession() {
+    //TODO: implement once the back is done
+  }
 }

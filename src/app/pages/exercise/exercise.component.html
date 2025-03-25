@@ -25,21 +25,17 @@
           </thead>
 
           <tbody>
-            @for (series of enteredValues; track $index) {
+            @for (series of enteredValues; track $index; let id = $index) {
               <tr>
                 @for (measure of series; track measure.id) {
                   <td>
-                    <input type="number" />
+                    <input type="number" [(ngModel)]="measure.value" />
                     <label>{{ measure.unit }}</label>
                   </td>
                 }
 
                 <td>
-                  <input type="number" />
-                </td>
-
-                <td>
-                  <button>-</button>
+                  <button (click)="removeSeries(id)">-</button>
                 </td>
               </tr>
             }

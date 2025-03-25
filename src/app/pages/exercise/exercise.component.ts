@@ -55,6 +55,16 @@ export class ExerciseComponent {
       };
     });
 
+    cell.push({
+      id: "rep",
+      unit: "",
+      value: 0,
+    });
+
     this.enteredValues.push(cell);
+  }
+
+  removeSeries(index: number) {
+    this.enteredValues.splice(index, 1);
   }
 }

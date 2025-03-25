@@ -1,0 +1,145 @@
+main {
+  display: flex;
+  flex-direction: column;
+
+  margin: 20px 100px;
+  padding: 20px 30px;
+
+  h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+
+  .image_description {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    img {
+      width: 45%;
+    }
+
+    ol {
+      width: 45%;
+
+      li {
+        margin: 10px 0;
+      }
+    }
+  }
+
+  .add_to_training_button {
+    align-self: center;
+
+    margin: 20px 0;
+    padding: 10px 30px;
+
+    font-size: 18px;
+
+    border-radius: 50px;
+  }
+
+  .series_section {
+    margin: 20px;
+    padding: 30px;
+
+    border-radius: 10px;
+    background-color: #bebebe;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      thead {
+        td {
+          padding: 0 15px;
+        }
+      }
+
+      tbody {
+        tr {
+          border: solid #bebebe;
+          border-width: 5px 0;
+
+          td {
+            padding: 5px 10px;
+            background-color: #00000033;
+
+            input {
+              padding: 2px 5px;
+
+              font-size: 14px;
+
+              border: none;
+              border-radius: 5px;
+              background-color: transparent;
+
+              &:focus {
+                outline: none;
+                background-color: #00000033;
+              }
+            }
+
+            label {
+              margin-left: 5px;
+            }
+
+            button {
+              margin: 2px 0;
+              padding: 2px 6px;
+
+              border-radius: 2px;
+
+              background-color: transparent;
+
+              &:hover {
+                background-color: #ececec;
+              }
+            }
+
+            &:first-of-type {
+              border-radius: 10px 0 0 10px;
+            }
+
+            &:last-of-type {
+              border-radius: 0 10px 10px 0;
+            }
+          }
+        }
+      }
+    }
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+
+      margin-top: 10px;
+      padding: 5px;
+
+      border-radius: 5px;
+    }
+
+    .add_series_button {
+      width: 100%;
+      font-size: 16px;
+    }
+
+    .icon {
+      display: inline-flex;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 50px;
+
+      width: 100%;
+
+      button {
+        width: 50%;
+      }
+    }
+  }
+}

@@ -1,45 +1,58 @@
-<main>
-  <h1>{{ exercise.exercise_name }}</h1>
+@if (exercise) {
+  <main>
+    <h1>{{ exercise.exercise_name }}</h1>
 
-  <section class="image_description">
-    <img [src]="exercise.image" alt="" />
-    <ol>
-      @for (step of steps; track $index) {
-        <li>{{ step }}</li>
-      }
-    </ol>
-  </section>
-
-  @if (!displaySeries) {
-    <button class="add_to_training_button" (click)="toggleSeries()">Ajouter à l'entraînement</button>
-  }
-  @else {
-    <section class="series_section">
-      <table>
-        <thead>
-          @for (measure of exercise.trackable_measures; track $index) {
-            <td>{{ measure.measure_name }}</td>
-          }
-          <td>Répétitions</td>
-        </thead>
-
-        <tbody>
-          @for (series of enteredValues; track $index) {
-            <tr>
-              <td>
-                <input type="number" />
-              </td>
-            </tr>
-          }
-        </tbody>
-      </table>
-
-      <button (click)="addSeries()">Ajouter une série</button>
-
-      <article>
-        <button (click)="toggleSeries()">Annuler</button>
-        <button>Terminé</button>
-      </article>
+    <section class="image_description">
+      <img [src]="exercise.image" alt="" />
+      <ol>
+        @for (step of steps; track $index) {
+          <li>{{ step }}</li>
+        }
+      </ol>
     </section>
-  }
-</main>
+
+    @if (!displaySeries) {
+      <button class="add_to_training_button" (click)="toggleSeries()">Ajouter à l'entraînement</button>
+    }
+    @else {
+      <section class="series_section">
+        <table>
+          <thead>
+            @for (measure of exercise.trackable_measures; track $index) {
+              <td>{{ measure.measure_name }}</td>
+            }
+            <td>Répétitions</td>
+          </thead>
+
+          <tbody>
+            @for (series of enteredValues; track $index) {
+              <tr>
+                @for (measure of series; track measure.id) {
+                  <td>
+                    <input type="number" />
+                    <label>{{ measure.unit }}</label>
+                  </td>
+                }
+
+                <td>
+                  <input type="number" />
+                </td>
+
+                <td>
+                  <button>-</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+
+        <button (click)="addSeries()">Ajouter une série</button>
+
+        <article>
+          <button (click)="toggleSeries()">Annuler</button>
+          <button>Terminé</button>
+        </article>
+      </section>
+    }
+  </main>
+}

@@ -14,7 +14,11 @@ export class ExerciseComponent {
   steps: string[] = [];
 
   displaySeries: boolean = false;
-  enteredValues: Record<string, { name: string, value: number}>[][] = [];
+  enteredValues: {
+    id: string,
+    unit: string,
+    value: number,
+  }[][] = [];
 
   constructor (
     private _activatedRoute: ActivatedRoute,
@@ -45,14 +49,12 @@ export class ExerciseComponent {
   addSeries() {
     const cell = this.exercise.trackable_measures.map(measure => {
       return {
-        [measure.id]: {
-          name: measure.measure_name,
-          value: 0,
-        },
+        id: measure.id,
+        unit: measure.unit,
+        value: 0,
       };
     });
 
     this.enteredValues.push(cell);
-    console.log("🚀 ~ ExerciseComponent ~ addSeries ~ this.enteredValues:", this.enteredValues);
   }
 }

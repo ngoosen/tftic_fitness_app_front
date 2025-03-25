@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './pages/admin/admin.component';
 import { ExerciseComponent } from './pages/exercise/exercise.component';
+import { ExercisesComponent } from './pages/exercises/exercises.component';
 
 const routes: Routes = [
   { path: "admin", component: AdminComponent, },
+  { path: "exercise", component: ExercisesComponent, },
   { path: "exercise/:id", component: ExerciseComponent, },
 ];
 

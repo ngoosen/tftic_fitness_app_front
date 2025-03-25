@@ -1,0 +1,17 @@
+<main>
+  <section class="search_bar">
+    <p>Rechercher:</p>
+    <input type="text" />
+  </section>
+
+  <section class="exercises_list">
+    @for (exercise of exercises; track $index) {
+      <a [href]="`/exercise/${exercise.id}`">
+        <article>
+          <img [src]="exercise.image" alt="" />
+          <h2>{{ exercise.exercise_name }}</h2>
+        </article>
+      </a>
+    }
+  </section>
+</main>

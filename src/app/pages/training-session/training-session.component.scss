@@ -1,10 +1,16 @@
 main {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 
   margin: 20px 10vw;
 
-  .start_session_button {
+  // --- No current session --- //
+
+  .start_session_button,
+  // Session in progress
+  .add_exercise_button {
+    align-self: center;
+
     display: flex;
     align-items: center;
     gap: 20px;
@@ -23,5 +29,51 @@ main {
     &:hover {
       background-color: #c5c5c5;
     }
+  }
+
+  // --- Session in progress --- //
+
+  .date_duration {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .description {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    margin: 20px 0;
+    padding: 20px;
+
+    border-radius: 5px;
+    background-color: #e0e0e0;
+
+    p {
+      width: 90%;
+    }
+
+    button {
+      width: 30px;
+      height: 30px;
+
+      border-radius: 5px;
+      background-color: #f7f7f7;
+
+      &:hover {
+        background-color: #c5c5c5;
+      }
+    }
+  }
+
+  // .add_exercise_button {
+  // }
+
+  .exercises {
+    margin: 20px 0;
+    padding: 20px;
+
+    border-radius: 5px;
+    background-color: #eeeeee;
   }
 }

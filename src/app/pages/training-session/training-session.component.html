@@ -1,1 +1,11 @@
-<p>training-session works!</p>
+<main>
+  @if (trainingSessionId) {
+    <h1>{{ trainingSessionId }}</h1>
+  }
+  @else {
+    <button class="start_session_button" (click)="startTrainingSession()">
+      <p>Démarrer une session d'entraînement</p>
+      <lucide-icon name="circle-play" class="icon"></lucide-icon>
+    </button>
+  }
+</main>

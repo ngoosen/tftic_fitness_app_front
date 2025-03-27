@@ -1,0 +1,27 @@
+main {
+  display: flex;
+  justify-content: center;
+
+  margin: 20px 10vw;
+
+  .start_session_button {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    padding: 10px 40px;
+
+    font-size: 20px;
+
+    border-radius: 50px;
+    background-color: #a7a7a7;
+
+    .icon {
+      display: flex;
+    }
+
+    &:hover {
+      background-color: #c5c5c5;
+    }
+  }
+}

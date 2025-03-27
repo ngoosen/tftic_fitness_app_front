@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: "exercise", component: ExercisesComponent, },
   { path: "exercise/:id", component: ExerciseComponent, },
   { path: "training-session", component: TrainingSessionComponent, },
+  { path: "training-session/:id", component: TrainingSessionComponent, },
 ];
 
 @NgModule({

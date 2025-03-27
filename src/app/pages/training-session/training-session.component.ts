@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FullTrainingSessionData } from '../../models/training-session.model';
 import { TrainingSessionService } from '../../tools/services/training-session.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { TrainingSessionService } from '../../tools/services/training-session.se
 })
 export class TrainingSessionComponent {
   trainingSessionId: string | undefined;
+  trainingSessionData!: FullTrainingSessionData;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -20,6 +22,16 @@ export class TrainingSessionComponent {
 
     if (paramId) {
       this.trainingSessionId = paramId;
+
+      _trainingSessionService.getCurrentTrainingSession().subscribe({
+        next: (data) => {
+          console.log("🚀 ~ TrainingSessionComponent ~ _trainingSessionService.getCurrentTrainingSession ~ data:", data);
+          this.trainingSessionData = data;
+        },
+        error: (e) => {
+          console.log(e);
+        },
+      })
     } else {
       const serviceId = _trainingSessionService.currentTrainingSessionId;
 
@@ -33,6 +45,7 @@ export class TrainingSessionComponent {
     this._trainingSessionService.startTrainingSession().subscribe({
       next: (result) => {
         this._trainingSessionService.setSessionId(result.id);
+        this._router.navigate(["/training-session", result.id]);
       },
       error: (e) => {
         console.log(e);

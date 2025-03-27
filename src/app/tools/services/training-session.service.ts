@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import dayjs, { Dayjs } from "dayjs";
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environments';
-import { TrainingSession } from '../../models/training-session.model';
+import { FullTrainingSessionData, TrainingSession } from '../../models/training-session.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +11,27 @@ import { TrainingSession } from '../../models/training-session.model';
 export class TrainingSessionService {
   private _baseUrl = environment.apiUrl;
   private _startTime: Dayjs | undefined;
+  private _userId: string = "6755600D-0004-F011-94F5-005056A76538";
 
-  currentTrainingSessionId: string | undefined = "467F5BFB-120B-F011-94F9-005056A76538";
+  currentTrainingSessionId: string | undefined = "6855600D-0004-F011-94F5-005056A76538";
+  // currentTrainingSessionId: string | undefined;
 
   constructor(private _http: HttpClient) { }
+
+  getAllTrainingSessions(): Observable<FullTrainingSessionData> {
+    //TODO: update user id
+    return this._http.get<FullTrainingSessionData>(`${this._baseUrl}/training-session/${this._userId}`);
+  }
+
+  getCurrentTrainingSession(): Observable<FullTrainingSessionData> {
+    //TODO: update user id
+    return this._http.get<FullTrainingSessionData>(`${this._baseUrl}/training-session/${this._userId}/${this.currentTrainingSessionId}`);
+  }
+
+  getTrainingSessionById(sessionId: string): Observable<FullTrainingSessionData> {
+    //TODO: update user id
+    return this._http.get<FullTrainingSessionData>(`${this._baseUrl}/training-session/${this._userId}/${sessionId}`);
+  }
 
   setSessionId(id: string) {
     this.currentTrainingSessionId = id;
@@ -26,7 +43,7 @@ export class TrainingSessionService {
       duration: "",
       description: "",
       //TODO: update user id
-      user: "6755600D-0004-F011-94F5-005056A76538"
+      user: this._userId,
     };
 
     this._startTime = dayjs();

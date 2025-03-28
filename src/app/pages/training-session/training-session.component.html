@@ -1,5 +1,16 @@
 <main>
   @if (trainingSessionId) {
+    @if (displayDeletePopup) {
+      <app-popup>
+        <h2>Êtes-vous sûr·e de vouloir supprimer l'exercice?</h2>
+
+        <div class="delete_buttons">
+          <button (click)="displayDeletePopup = false">Annuler</button>
+          <button (click)="confirmRemoveExercise()">Confirmer</button>
+        </div>
+      </app-popup>
+    }
+
     <h1>Entraînement en cours</h1>
 
     <section class="date_duration">
@@ -8,7 +19,7 @@
     </section>
 
     <section class="description">
-      <p>{{ trainingSessionData.description }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore nulla nostrum eaque perspiciatis ullam. Autem in magnam natus et, amet nostrum molestiae aut earum aspernatur quia pariatur, eos ad repudiandae.</p>
+      <p>{{ trainingSessionData.description === "" ? "Ajouter une description" : trainingSessionData.description }}</p>
 
       <button>
         <lucide-icon name="pencil" [size]="16" class="icon"></lucide-icon>
@@ -24,6 +35,10 @@
       @for (exercise of trainingSessionData.exercises; track exercise.id) {
         <article>
           <h2>{{ exercise.exercise.exercise_name }}</h2>
+
+          <button (click)="removeExercise(exercise.id)">
+            <lucide-icon name="trash2" class="icon" [size]="17" class="icon"></lucide-icon>
+          </button>
 
           <table>
             <thead>

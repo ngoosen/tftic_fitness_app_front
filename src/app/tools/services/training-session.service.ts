@@ -33,6 +33,10 @@ export class TrainingSessionService {
     return this._http.get<FullTrainingSessionData>(`${this._baseUrl}/training-session/${this._userId}/${sessionId}`);
   }
 
+  removeExercise(trainingSessionExerciseId: string): Observable<any> {
+    return this._http.delete(`${this._baseUrl}/training-session-exercise/${trainingSessionExerciseId}`);
+  }
+
   setSessionId(id: string) {
     this.currentTrainingSessionId = id;
   }

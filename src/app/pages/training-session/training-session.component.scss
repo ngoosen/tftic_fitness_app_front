@@ -33,6 +33,18 @@ main {
 
   // --- Session in progress --- //
 
+  button:not(.start_session_button):not(.add_exercise_button) {
+    width: 30px;
+    height: 30px;
+
+    border-radius: 5px;
+    background-color: #f7f7f7;
+
+    &:hover {
+      background-color: #c5c5c5;
+    }
+  }
+
   .date_duration {
     display: flex;
     justify-content: space-between;
@@ -52,28 +64,64 @@ main {
     p {
       width: 90%;
     }
-
-    button {
-      width: 30px;
-      height: 30px;
-
-      border-radius: 5px;
-      background-color: #f7f7f7;
-
-      &:hover {
-        background-color: #c5c5c5;
-      }
-    }
   }
 
   // .add_exercise_button {
   // }
 
   .exercises {
+    display: grid;
+    gap: 10px;
+
     margin: 20px 0;
-    padding: 20px;
+    padding: 10px;
 
     border-radius: 5px;
     background-color: #eeeeee;
+
+    article {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      padding: 10px 15px;
+
+      border-radius: 5px;
+      background-color: #d1d1d1;
+
+      h2 {
+        margin-bottom: 10px;
+      }
+
+      table {
+        width: 100%;
+      }
+    }
+  }
+
+  .delete_buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+
+    width: 100%;
+
+    margin-top: 20px;
+
+    button {
+      width: fit-content;
+      height: fit-content;
+
+      padding: 5px 30px;
+
+      font-size: 18px;
+
+      border-radius: 50px;
+      background-color: #eeeeee;
+
+      &:last-of-type:not(:hover) {
+        background-color: #969696;
+      }
+    }
   }
 }

@@ -13,6 +13,9 @@ export class TrainingSessionComponent {
   trainingSessionId: string | undefined;
   trainingSessionData!: FullTrainingSessionData;
 
+  displayDeletePopup: boolean = true;
+  exerciseToDeleteId: string = "";
+
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
@@ -22,16 +25,7 @@ export class TrainingSessionComponent {
 
     if (paramId) {
       this.trainingSessionId = paramId;
-
-      _trainingSessionService.getCurrentTrainingSession().subscribe({
-        next: (data) => {
-          console.log("🚀 ~ TrainingSessionComponent ~ _trainingSessionService.getCurrentTrainingSession ~ data:", data);
-          this.trainingSessionData = data;
-        },
-        error: (e) => {
-          console.log(e);
-        },
-      })
+      this.getCurrentSession();
     } else {
       const serviceId = _trainingSessionService.currentTrainingSessionId;
 
@@ -39,6 +33,17 @@ export class TrainingSessionComponent {
         _router.navigate(["/training-session", serviceId]);
       }
     }
+  }
+
+  getCurrentSession() {
+    this._trainingSessionService.getCurrentTrainingSession().subscribe({
+      next: (data) => {
+        this.trainingSessionData = data;
+      },
+      error: (e) => {
+        console.log(e);
+      },
+    })
   }
 
   startTrainingSession() {
@@ -50,6 +55,22 @@ export class TrainingSessionComponent {
       error: (e) => {
         console.log(e);
       },
+    });
+  }
+
+  removeExercise(id: string) {
+    this.displayDeletePopup = true;
+    this.exerciseToDeleteId = id;
+  }
+
+  confirmRemoveExercise() {
+    this._trainingSessionService.removeExercise(this.exerciseToDeleteId).subscribe({
+      next: (result) => {
+        this.getCurrentSession();
+      } ,
+      error: (e) => {
+        console.log(e);
+      }
     });
   }
 }

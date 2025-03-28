@@ -13,7 +13,7 @@ export class TrainingSessionComponent {
   trainingSessionId: string | undefined;
   trainingSessionData!: FullTrainingSessionData;
 
-  displayDeletePopup: boolean = true;
+  displayDeletePopup: boolean = false;
   exerciseToDeleteId: string = "";
 
   constructor(
@@ -56,6 +56,10 @@ export class TrainingSessionComponent {
         console.log(e);
       },
     });
+  }
+
+  addExercise() {
+    this._router.navigate(["/exercise"]);
   }
 
   removeExercise(id: string) {

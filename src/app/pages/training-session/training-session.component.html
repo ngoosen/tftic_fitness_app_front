@@ -1,7 +1,7 @@
 <main>
   @if (trainingSessionId) {
     @if (displayDeletePopup) {
-      <app-popup>
+      <app-popup (onClose)="displayDeletePopup = false">
         <h2>Êtes-vous sûr·e de vouloir supprimer l'exercice?</h2>
 
         <div class="delete_buttons">

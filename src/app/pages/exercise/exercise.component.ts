@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Exercise } from '../../models/exercise.model';
+import { AddExerciseToTrainingDTO } from '../../models/training-session.model';
 import { ExerciseService } from '../../tools/services/exercise.service';
+import { TrainingSessionService } from '../../tools/services/training-session.service';
 
 @Component({
   selector: 'app-exercise',
@@ -22,7 +24,9 @@ export class ExerciseComponent {
 
   constructor (
     private _activatedRoute: ActivatedRoute,
-    private _exerciseService: ExerciseService
+    private _router: Router,
+    private _exerciseService: ExerciseService,
+    private _trainingSessionService: TrainingSessionService,
   ) { }
 
   ngOnInit() {
@@ -74,6 +78,33 @@ export class ExerciseComponent {
   }
 
   addExerciseToTrainingSession() {
-    //TODO: implement once the back is done
+    const series = this.enteredValues.map(value => {
+      const reps = value.find(v => v.unit === "rep")?.value ?? 0;
+      const measures = value.filter(v => v.unit !== "rep").map(v => {
+        return {
+          id: v.id,
+          measure_quantity: v.value,
+        }
+      });
+
+      return {
+        reps,
+        measures,
+      }
+    });
+
+    const newExercise: AddExerciseToTrainingDTO = {
+      exerciseId: this.exercise.id,
+      series,
+    };
+
+    this._trainingSessionService.addDataToTrainingSession(newExercise).subscribe({
+      next: (result) => {
+        this._router.navigate(["/training-session"]);
+      },
+      error: (e) => {
+        console.log(e);
+      }
+    });
   }
 }

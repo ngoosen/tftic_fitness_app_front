@@ -1,3 +1,4 @@
+import { Measure } from "./measure.model";
 import { User } from "./user.model";
 
 export interface TrainingSession {
@@ -38,4 +39,25 @@ export interface FullTrainingSessionData {
       }[]
     }[]
   }[]
+}
+
+export interface AddExerciseToTrainingDTO {
+  exerciseId: string;
+  series: {
+    reps: number;
+    measures: {
+      id: string;
+      measure_quantity: number;
+    }[];
+  }[];
+}
+
+export interface AddExerciseToTrainingResult {
+  id: string;
+  measure_quantity: number;
+  series: {
+    id: string;
+    reps: number;
+  },
+  measure: Measure
 }

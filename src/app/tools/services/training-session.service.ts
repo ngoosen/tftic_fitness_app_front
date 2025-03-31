@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import dayjs, { Dayjs } from "dayjs";
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environments';
-import { FullTrainingSessionData, TrainingSession } from '../../models/training-session.model';
+import { AddExerciseToTrainingDTO, AddExerciseToTrainingResult, FullTrainingSessionData, TrainingSession } from '../../models/training-session.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,25 +17,6 @@ export class TrainingSessionService {
   // currentTrainingSessionId: string | undefined;
 
   constructor(private _http: HttpClient) { }
-
-  getAllTrainingSessions(): Observable<FullTrainingSessionData> {
-    //TODO: update user id
-    return this._http.get<FullTrainingSessionData>(`${this._baseUrl}/training-session/${this._userId}`);
-  }
-
-  getCurrentTrainingSession(): Observable<FullTrainingSessionData> {
-    //TODO: update user id
-    return this._http.get<FullTrainingSessionData>(`${this._baseUrl}/training-session/${this._userId}/${this.currentTrainingSessionId}`);
-  }
-
-  getTrainingSessionById(sessionId: string): Observable<FullTrainingSessionData> {
-    //TODO: update user id
-    return this._http.get<FullTrainingSessionData>(`${this._baseUrl}/training-session/${this._userId}/${sessionId}`);
-  }
-
-  removeExercise(trainingSessionExerciseId: string): Observable<any> {
-    return this._http.delete(`${this._baseUrl}/training-session-exercise/${trainingSessionExerciseId}`);
-  }
 
   setSessionId(id: string) {
     this.currentTrainingSessionId = id;
@@ -64,5 +45,46 @@ export class TrainingSessionService {
 
     this._startTime = undefined;
     this.currentTrainingSessionId = undefined;
+  }
+
+  getAllTrainingSessions(): Observable<FullTrainingSessionData> {
+    //TODO: update user id
+    return this._http.get<FullTrainingSessionData>(`${this._baseUrl}/training-session/${this._userId}`);
+  }
+
+  getCurrentTrainingSession(): Observable<FullTrainingSessionData> {
+    //TODO: update user id
+    return this._http.get<FullTrainingSessionData>(`${this._baseUrl}/training-session/${this._userId}/${this.currentTrainingSessionId}`);
+  }
+
+  getTrainingSessionById(sessionId: string): Observable<FullTrainingSessionData> {
+    //TODO: update user id
+    return this._http.get<FullTrainingSessionData>(`${this._baseUrl}/training-session/${this._userId}/${sessionId}`);
+  }
+
+  removeExercise(trainingSessionExerciseId: string): Observable<any> {
+    return this._http.delete(`${this._baseUrl}/training-session-exercise/${trainingSessionExerciseId}`);
+  }
+
+  addDataToTrainingSession(data: AddExerciseToTrainingDTO, trainingSessionId = this.currentTrainingSessionId): Observable<AddExerciseToTrainingResult[][]> {
+    if (!trainingSessionId) {
+      this.startTrainingSession().subscribe({
+        next: (result) => {
+          this.currentTrainingSessionId = result.id;
+          trainingSessionId = result.id;
+        },
+        error: (e) => {
+          console.log(e);
+        }
+      });
+    }
+
+    const body = {
+      training_session_id: trainingSessionId,
+      exercise_id: data.exerciseId,
+      series: data.series,
+    };
+
+    return this._http.post<AddExerciseToTrainingResult[][]>(`${this._baseUrl}/training-session-exercise/full`, body);
   }
 }

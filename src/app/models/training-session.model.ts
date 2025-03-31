@@ -61,3 +61,32 @@ export interface AddExerciseToTrainingResult {
   },
   measure: Measure
 }
+
+export interface TrainingSessionByExerciseId {
+  id: string;
+  exercise: {
+    id: string;
+    exercise_name: string;
+    image: string;
+    description: string;
+  }
+  trainingSession: {
+    id: string;
+    training_date: string;
+    duration: string;
+    description: string;
+  }
+  series: {
+    id: string;
+    reps: number;
+    measures: {
+      id: string;
+      measure_quantity: number;
+      measure: {
+        id: string;
+        measure_name: string;
+        unit: string;
+      }
+    }[]
+  }[]
+}

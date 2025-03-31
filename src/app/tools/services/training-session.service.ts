@@ -82,7 +82,12 @@ export class TrainingSessionService {
     const body = {
       training_session_id: trainingSessionId,
       exercise_id: data.exerciseId,
-      series: data.series,
+      series: data.series.map(sery => {
+        return {
+          reps: sery.measures.find(measure => measure.id === "rep")?.measure_quantity,
+          measures: sery.measures.filter(measure => measure.id !== "rep"),
+        }
+      }),
     };
 
     return this._http.post<AddExerciseToTrainingResult[][]>(`${this._baseUrl}/training-session-exercise/full`, body);

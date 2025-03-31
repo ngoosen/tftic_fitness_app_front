@@ -42,14 +42,12 @@
 
           <table>
             <thead>
-              @for (series of exercise.series; track series.id) {
-                @for (measure of series.measures; track measure.id) {
-                  <td>
-                    {{ measure.measure.measure_name }}
-                  </td>
-                }
-                <td>Répétitions</td>
+              @for (measure of measures; track $index) {
+                <td>
+                  {{ measure }}
+                </td>
               }
+              <td>Répétitions</td>
             </thead>
 
             <tbody>

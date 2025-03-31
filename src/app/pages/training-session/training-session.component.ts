@@ -12,6 +12,7 @@ import { TrainingSessionService } from '../../tools/services/training-session.se
 export class TrainingSessionComponent {
   trainingSessionId: string | undefined;
   trainingSessionData!: FullTrainingSessionData;
+  measures: string[] = [];
 
   displayDeletePopup: boolean = false;
   exerciseToDeleteId: string = "";
@@ -39,6 +40,15 @@ export class TrainingSessionComponent {
     this._trainingSessionService.getCurrentTrainingSession().subscribe({
       next: (data) => {
         this.trainingSessionData = data;
+        console.log("🚀 ~ TrainingSessionComponent ~ this._trainingSessionService.getCurrentTrainingSession ~ data:", data);
+
+        data.exercises.forEach(exercise => {
+          exercise.series.forEach(series => {
+            if (this.measures.length === 0) {
+              this.measures = series.measures.map(measure => measure.measure.measure_name);
+            }
+          });
+        });
       },
       error: (e) => {
         console.log(e);

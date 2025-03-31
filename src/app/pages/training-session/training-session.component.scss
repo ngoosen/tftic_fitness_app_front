@@ -32,7 +32,9 @@ main {
   }
 
   .all_training_sessions {
-    margin: 20px 0;
+    h1{
+      margin: 20px 0;
+    }
 
     ul {
       display: flex;

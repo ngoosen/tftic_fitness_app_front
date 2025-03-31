@@ -20,7 +20,7 @@ export class TrainingSessionComponent {
   exerciseToDeleteId: string = "";
 
   displayUpdateDescription: boolean = false;
-  descriptionToUpdate: string = "";
+  descriptionToUpdate: string = "Ajouter une description";
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -54,7 +54,9 @@ export class TrainingSessionComponent {
       next: (data) => {
         this.trainingSessionData = data;
         console.log("🚀 ~ TrainingSessionComponent ~ this._trainingSessionService.getCurrentTrainingSession ~ data:", data);
-        this.descriptionToUpdate = data.description;
+        if (data.description !== "") {
+          this.descriptionToUpdate = data.description;
+        }
 
         data.exercises.forEach(exercise => {
           exercise.series.forEach(series => {

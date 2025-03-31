@@ -38,42 +38,44 @@
       <lucide-icon name="circle-plus" class="icon"></lucide-icon>
     </button>
 
-    <section class="exercises">
-      @for (exercise of trainingSessionData.exercises; track exercise.id) {
-        <article>
-          <h2>{{ exercise.exercise.exercise_name }}</h2>
+    @if (trainingSessionData.exercises.length > 0) {
+      <section class="exercises">
+        @for (exercise of trainingSessionData.exercises; track exercise.id) {
+          <article>
+            <h2>{{ exercise.exercise.exercise_name }}</h2>
 
-          <button (click)="removeExercise(exercise.id)">
-            <lucide-icon name="trash2" class="icon" [size]="17" class="icon"></lucide-icon>
-          </button>
+            <button (click)="removeExercise(exercise.id)">
+              <lucide-icon name="trash2" class="icon" [size]="17" class="icon"></lucide-icon>
+            </button>
 
-          <table>
-            <thead>
-              <tr>
-                @for (measure of measures; track $index) {
-                  <td>
-                    {{ measure }}
-                  </td>
-                }
-                <td>Répétitions</td>
-              </tr>
-            </thead>
-
-            <tbody>
-              @for (series of exercise.series; track series.id) {
+            <table>
+              <thead>
                 <tr>
-                  @for (measure of series.measures; track measure.id) {
-                    <td>{{ measure.measure_quantity }} {{ measure.measure.unit }}</td>
+                  @for (measure of measures; track $index) {
+                    <td>
+                      {{ measure }}
+                    </td>
                   }
-
-                  <td>x {{ series.reps }}</td>
+                  <td>Répétitions</td>
                 </tr>
-              }
-            </tbody>
-          </table>
-        </article>
-      }
-    </section>
+              </thead>
+
+              <tbody>
+                @for (series of exercise.series; track series.id) {
+                  <tr>
+                    @for (measure of series.measures; track measure.id) {
+                      <td>{{ measure.measure_quantity }} {{ measure.measure.unit }}</td>
+                    }
+
+                    <td>x {{ series.reps }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </article>
+        }
+      </section>
+    }
   }
   @else {
     <button class="start_session_button" (click)="startTrainingSession()">
@@ -82,6 +84,8 @@
     </button>
 
     <section class="all_training_sessions">
+      <h1>Tous les entraînements</h1>
+
       <ul>
         @for (session of trainingSessions; track $index) {
           <li>

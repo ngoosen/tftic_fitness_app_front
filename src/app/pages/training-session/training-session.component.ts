@@ -81,6 +81,7 @@ export class TrainingSessionComponent {
     this._trainingSessionService.removeExercise(this.exerciseToDeleteId).subscribe({
       next: (result) => {
         this.getCurrentSession();
+        this.displayDeletePopup = false;
       } ,
       error: (e) => {
         console.log(e);

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-popup',
@@ -7,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrl: './popup.component.scss'
 })
 export class PopupComponent {
+  @Output() onClose: EventEmitter<boolean>;
 
+  constructor() {
+    this.onClose = new EventEmitter<boolean>;
+  }
+
+  closeHandler() {
+    this.onClose.emit();
+  }
 }

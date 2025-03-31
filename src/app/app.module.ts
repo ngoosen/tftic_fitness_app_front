@@ -16,6 +16,7 @@ import { ExercisesComponent } from './pages/exercises/exercises.component';
 import { TrainingSessionComponent } from './pages/training-session/training-session.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { PopupComponent } from './shared/components/ui/popup/popup.component';
+import { LineChartComponent } from './shared/components/ui/line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { PopupComponent } from './shared/components/ui/popup/popup.component';
     MeasuresListComponent,
     ExerciseComponent,
     ExercisesComponent,
-    TrainingSessionComponent
+    TrainingSessionComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,

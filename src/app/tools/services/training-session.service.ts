@@ -47,9 +47,9 @@ export class TrainingSessionService {
     this.currentTrainingSessionId = undefined;
   }
 
-  getAllTrainingSessions(): Observable<FullTrainingSessionData> {
+  getAllTrainingSessions(): Observable<FullTrainingSessionData[]> {
     //TODO: update user id
-    return this._http.get<FullTrainingSessionData>(`${this._baseUrl}/training-session/${this._userId}`);
+    return this._http.get<FullTrainingSessionData[]>(`${this._baseUrl}/training-session/${this._userId}`);
   }
 
   getCurrentTrainingSession(): Observable<FullTrainingSessionData> {

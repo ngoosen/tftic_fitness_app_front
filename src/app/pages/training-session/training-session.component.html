@@ -11,10 +11,8 @@
       </app-popup>
     }
 
-    <h1>Entraînement en cours</h1>
-
     <section class="date_duration">
-      <p>{{ trainingSessionData.training_date | date: "dd/MM/YYYY" }}</p>
+      <h1>Entraînement du {{ trainingSessionData.training_date | date: "dd/MM/YYYY" }}</h1>
       <p>{{ trainingSessionData.duration }}</p>
     </section>
 
@@ -51,12 +49,14 @@
 
           <table>
             <thead>
-              @for (measure of measures; track $index) {
-                <td>
-                  {{ measure }}
-                </td>
-              }
-              <td>Répétitions</td>
+              <tr>
+                @for (measure of measures; track $index) {
+                  <td>
+                    {{ measure }}
+                  </td>
+                }
+                <td>Répétitions</td>
+              </tr>
             </thead>
 
             <tbody>
@@ -80,5 +80,20 @@
       <p>Démarrer une session d'entraînement</p>
       <lucide-icon name="circle-play" class="icon"></lucide-icon>
     </button>
+
+    <section class="all_training_sessions">
+      <ul>
+        @for (session of trainingSessions; track $index) {
+          <li>
+            <a [href]="'/training-session/' + session.id">
+              <p>Entraînement du {{ session.training_date | date: "dd/MM/YYYY" }}</p>
+              @if (session.description && session.description !== "") {
+                <p>{{ session.description }}</p>
+              }
+            </a>
+          </li>
+        }
+      </ul>
+    </section>
   }
 </main>

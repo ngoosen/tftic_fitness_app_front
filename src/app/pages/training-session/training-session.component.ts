@@ -10,6 +10,8 @@ import { TrainingSessionService } from '../../tools/services/training-session.se
   styleUrl: './training-session.component.scss'
 })
 export class TrainingSessionComponent {
+  trainingSessions: FullTrainingSessionData[] = [];
+
   trainingSessionId: string | undefined;
   trainingSessionData!: FullTrainingSessionData;
   measures: string[] = [];
@@ -23,24 +25,32 @@ export class TrainingSessionComponent {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
-    private _trainingSessionService: TrainingSessionService
-  ) {
-    const paramId = _activatedRoute.snapshot.params["id"];
+    private _trainingSessionService: TrainingSessionService,
+  ) { }
+
+  ngOnInit() {
+    const paramId = this._activatedRoute.snapshot.params["id"];
 
     if (paramId) {
       this.trainingSessionId = paramId;
-      this.getCurrentSession();
+      this.getSession(paramId);
     } else {
-      const serviceId = _trainingSessionService.currentTrainingSessionId;
+      const serviceId = this._trainingSessionService.currentTrainingSessionId;
 
       if (serviceId) {
-        _router.navigate(["/training-session", serviceId]);
+        this._router.navigate(["/training-session", serviceId]);
+      } else {
+        this._trainingSessionService.getAllTrainingSessions().subscribe({
+          next: (result) => {
+            this.trainingSessions = result;
+          }
+        })
       }
     }
   }
 
-  getCurrentSession() {
-    this._trainingSessionService.getCurrentTrainingSession().subscribe({
+  getSession(sessionId: string) {
+    this._trainingSessionService.getTrainingSessionById(sessionId).subscribe({
       next: (data) => {
         this.trainingSessionData = data;
         console.log("🚀 ~ TrainingSessionComponent ~ this._trainingSessionService.getCurrentTrainingSession ~ data:", data);
@@ -84,7 +94,10 @@ export class TrainingSessionComponent {
   confirmRemoveExercise() {
     this._trainingSessionService.removeExercise(this.exerciseToDeleteId).subscribe({
       next: (result) => {
-        this.getCurrentSession();
+        if (this.trainingSessionId) {
+          this.getSession(this.trainingSessionId);
+        }
+
         this.displayDeletePopup = false;
       } ,
       error: (e) => {

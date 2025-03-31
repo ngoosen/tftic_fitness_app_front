@@ -64,6 +64,22 @@ main {
     p {
       width: 90%;
     }
+
+    textarea {
+      width: 90%;
+
+      padding: 10px 15px;
+
+      font-size: 14px;
+
+      border: none;
+      border-radius: 5px;
+    }
+
+    .confirm_update {
+      color: #ffffff;
+      background-color: green;
+    }
   }
 
   // .add_exercise_button {

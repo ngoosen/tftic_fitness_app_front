@@ -19,11 +19,20 @@
     </section>
 
     <section class="description">
-      <p>{{ trainingSessionData.description === "" ? "Ajouter une description" : trainingSessionData.description }}</p>
+      @if (displayUpdateDescription) {
+        <textarea [rows]="3" [(ngModel)]="descriptionToUpdate"></textarea>
 
-      <button>
-        <lucide-icon name="pencil" [size]="16" class="icon"></lucide-icon>
-      </button>
+        <button (click)="updateDescription()" class="confirm_update">
+          <lucide-icon name="check" [size]="20" class="icon"></lucide-icon>
+        </button>
+      }
+      @else {
+        <p>{{ descriptionToUpdate }}</p>
+
+        <button (click)="toggleDescriptionUpdate()">
+          <lucide-icon name="pencil" [size]="16" class="icon"></lucide-icon>
+        </button>
+      }
     </section>
 
     <button class="add_exercise_button" (click)="addExercise()">

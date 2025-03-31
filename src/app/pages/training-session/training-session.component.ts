@@ -17,6 +17,9 @@ export class TrainingSessionComponent {
   displayDeletePopup: boolean = false;
   exerciseToDeleteId: string = "";
 
+  displayUpdateDescription: boolean = false;
+  descriptionToUpdate: string = "";
+
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
@@ -41,6 +44,7 @@ export class TrainingSessionComponent {
       next: (data) => {
         this.trainingSessionData = data;
         console.log("🚀 ~ TrainingSessionComponent ~ this._trainingSessionService.getCurrentTrainingSession ~ data:", data);
+        this.descriptionToUpdate = data.description;
 
         data.exercises.forEach(exercise => {
           exercise.series.forEach(series => {
@@ -86,6 +90,25 @@ export class TrainingSessionComponent {
       error: (e) => {
         console.log(e);
       }
+    });
+  }
+
+  toggleDescriptionUpdate() {
+    this.displayUpdateDescription = !this.displayUpdateDescription;
+  }
+
+  updateDescription() {
+    this._trainingSessionService.updateTrainingSession({
+      ...this.trainingSessionData,
+      description: this.descriptionToUpdate,
+    }).subscribe({
+      next: (result) => {
+        this.toggleDescriptionUpdate();
+        this.trainingSessionData.description = this.descriptionToUpdate;
+      },
+      error: (e) => {
+        console.log(e);
+      },
     });
   }
 }

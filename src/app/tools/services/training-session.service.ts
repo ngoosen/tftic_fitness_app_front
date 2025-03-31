@@ -62,6 +62,14 @@ export class TrainingSessionService {
     return this._http.get<FullTrainingSessionData>(`${this._baseUrl}/training-session/${this._userId}/${sessionId}`);
   }
 
+  updateTrainingSession(newSession: TrainingSession): Observable<any> {
+    return this._http.patch(`${this._baseUrl}/training-session/${newSession.id}`, {
+      training_date: newSession.training_date,
+      duration: newSession.duration,
+      description: newSession.description,
+    });
+  }
+
   removeExercise(trainingSessionExerciseId: string): Observable<any> {
     return this._http.delete(`${this._baseUrl}/training-session-exercise/${trainingSessionExerciseId}`);
   }

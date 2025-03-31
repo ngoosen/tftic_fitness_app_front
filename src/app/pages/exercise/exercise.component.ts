@@ -57,17 +57,39 @@ export class ExerciseComponent {
 
   addSeries() {
     const cell = this.exercise.trackable_measures.map(measure => {
+      let value = 0;
+
+      if (this.enteredValues.length > 0) {
+        const previousSeries = this.enteredValues.slice(-1)[0];
+        const previousValue = previousSeries.find(v => v.id === measure.id);
+
+        if (previousValue) {
+          value = previousValue.value;
+        }
+      }
+
       return {
         id: measure.id,
         unit: measure.unit,
-        value: 0,
+        value,
       };
     });
+
+    let value = 0;
+
+    if (this.enteredValues.length > 0) {
+      const previousSeries = this.enteredValues.slice(-1)[0];
+      const previousValue = previousSeries.find(v => v.id === "rep");
+
+      if (previousValue) {
+        value = previousValue.value;
+      }
+    }
 
     cell.push({
       id: "rep",
       unit: "",
-      value: 0,
+      value,
     });
 
     this.enteredValues.push(cell);

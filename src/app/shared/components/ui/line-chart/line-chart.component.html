@@ -1,1 +1,3 @@
-@if (lineChartConfig) {}
+@if (lineChartData) {
+  <canvas baseChart [data]="lineChartData" [type]="'line'"> </canvas>
+}

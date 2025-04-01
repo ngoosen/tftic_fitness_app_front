@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import dayjs, { Dayjs } from "dayjs";
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environments';
-import { AddExerciseToTrainingDTO, AddExerciseToTrainingResult, FullTrainingSessionData, TrainingSession } from '../../models/training-session.model';
+import { AddExerciseToTrainingDTO, AddExerciseToTrainingResult, FullTrainingSessionData, TrainingSession, TrainingSessionByExerciseId } from '../../models/training-session.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,8 @@ export class TrainingSessionService {
   private _startTime: Dayjs | undefined;
   private _userId: string = "6755600D-0004-F011-94F5-005056A76538";
 
-  currentTrainingSessionId: string | undefined = "3D2947FC-2A0E-F011-94F9-005056A76538";
-  // currentTrainingSessionId: string | undefined;
+  // currentTrainingSessionId: string | undefined = "3D2947FC-2A0E-F011-94F9-005056A76538";
+  currentTrainingSessionId: string | undefined;
 
   constructor(private _http: HttpClient) { }
 
@@ -60,6 +60,10 @@ export class TrainingSessionService {
   getTrainingSessionById(sessionId: string): Observable<FullTrainingSessionData> {
     //TODO: update user id
     return this._http.get<FullTrainingSessionData>(`${this._baseUrl}/training-session/${this._userId}/${sessionId}`);
+  }
+
+  getByExerciseId(exerciseId: string): Observable<TrainingSessionByExerciseId[]> {
+    return this._http.get<TrainingSessionByExerciseId[]>(`${this._baseUrl}/training-session-exercise/${exerciseId}`);
   }
 
   updateTrainingSession(newSession: TrainingSession): Observable<any> {

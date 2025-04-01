@@ -18,6 +18,7 @@ export class TrainingSessionComponent {
 
   displayDeletePopup: boolean = false;
   exerciseToDeleteId: string = "";
+  trainingSessionToDeleteId: string = "";
 
   displayUpdateDescription: boolean = false;
   descriptionToUpdate: string = "Ajouter une description";
@@ -40,20 +41,23 @@ export class TrainingSessionComponent {
       if (serviceId) {
         this._router.navigate(["/training-session", serviceId]);
       } else {
-        this._trainingSessionService.getAllTrainingSessions().subscribe({
-          next: (result) => {
-            this.trainingSessions = result;
-          }
-        })
+        this.getTrainingSessions();
       }
     }
+  }
+
+  getTrainingSessions() {
+    this._trainingSessionService.getAllTrainingSessions().subscribe({
+      next: (result) => {
+        this.trainingSessions = result;
+      }
+    });
   }
 
   getSession(sessionId: string) {
     this._trainingSessionService.getTrainingSessionById(sessionId).subscribe({
       next: (data) => {
         this.trainingSessionData = data;
-        console.log("🚀 ~ TrainingSessionComponent ~ this._trainingSessionService.getCurrentTrainingSession ~ data:", data);
         if (data.description !== "") {
           this.descriptionToUpdate = data.description;
         }
@@ -101,7 +105,26 @@ export class TrainingSessionComponent {
         }
 
         this.displayDeletePopup = false;
+        this.exerciseToDeleteId = "";
       } ,
+      error: (e) => {
+        console.log(e);
+      }
+    });
+  }
+
+  removeTrainingSession(id: string) {
+    this.displayDeletePopup = true;
+    this.trainingSessionToDeleteId = id;
+  }
+
+  confirmRemoveTrainingSession() {
+    this._trainingSessionService.deleteTrainingSession(this.trainingSessionToDeleteId).subscribe({
+      next: (result) => {
+        this.getTrainingSessions();
+        this.displayDeletePopup = false;
+        this.trainingSessionToDeleteId = "";
+      },
       error: (e) => {
         console.log(e);
       }

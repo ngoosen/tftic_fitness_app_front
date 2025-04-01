@@ -62,6 +62,11 @@ export class TrainingSessionService {
     return this._http.get<FullTrainingSessionData>(`${this._baseUrl}/training-session/${this._userId}/${sessionId}`);
   }
 
+  deleteTrainingSession(trainingSessionId: string): Observable<any> {
+    //TODO: update user id
+    return this._http.delete(`${this._baseUrl}/training-session/${this._userId}/${trainingSessionId}`);
+  }
+
   getByExerciseId(exerciseId: string): Observable<TrainingSessionByExerciseId[]> {
     return this._http.get<TrainingSessionByExerciseId[]>(`${this._baseUrl}/training-session-exercise/${exerciseId}`);
   }

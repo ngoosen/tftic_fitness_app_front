@@ -81,9 +81,6 @@ main {
     }
   }
 
-  // .add_exercise_button {
-  // }
-
   .exercises {
     display: grid;
     gap: 10px;
@@ -106,6 +103,15 @@ main {
 
       h2 {
         margin-bottom: 10px;
+
+        a {
+          color: #000000;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
       }
 
       table {

@@ -41,7 +41,9 @@
     <section class="exercises">
       @for (exercise of trainingSessionData.exercises; track exercise.id) {
         <article>
-          <h2>{{ exercise.exercise.exercise_name }}</h2>
+          <h2>
+            <a [href]="'/exercise/' + exercise.exercise.id">{{ exercise.exercise.exercise_name }}</a>
+          </h2>
 
           <button (click)="removeExercise(exercise.id)">
             <lucide-icon name="trash2" class="icon" [size]="17" class="icon"></lucide-icon>

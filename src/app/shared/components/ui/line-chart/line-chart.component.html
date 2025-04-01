@@ -1,3 +1,6 @@
 @if (lineChartData) {
   <canvas baseChart [data]="lineChartData" [type]="'line'"> </canvas>
 }
+@else {
+  <p>Aucune donnée relative à cet exercice pour l'instant.</p>
+}

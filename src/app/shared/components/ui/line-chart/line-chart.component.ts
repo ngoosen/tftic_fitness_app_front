@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ChartData } from 'chart.js';
+import { ChartData, ChartDataset } from 'chart.js';
 import dayjs from 'dayjs';
 import { TrainingSessionService } from '../../../../tools/services/training-session.service';
 
@@ -93,10 +93,7 @@ export class LineChartComponent {
 
           const labels: string[] = [];
 
-          const datasets: {
-            label: string;
-            data: number[];
-          }[] = [];
+          const datasets: ChartDataset<"line", number[]>[] = [];
 
           firstStep.forEach(element => {
             if (!labels.includes(element.date)) {
@@ -111,6 +108,9 @@ export class LineChartComponent {
               datasets.push({
                 label: element.measure_name,
                 data: [element.measure_quantity_average],
+                tension: 0.1,
+                pointHoverRadius: 5,
+                pointHitRadius: 5,
               });
             }
           });

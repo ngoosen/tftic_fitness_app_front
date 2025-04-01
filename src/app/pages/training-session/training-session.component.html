@@ -1,119 +1,78 @@
 <main>
-  @if (trainingSessionId) {
-    @if (displayDeletePopup) {
-      <app-popup (onClose)="displayDeletePopup = false">
-        <h2>Êtes-vous sûr·e de vouloir supprimer l'exercice?</h2>
+  @if (displayDeletePopup) {
+    <app-popup (onClose)="displayDeletePopup = false">
+      <h2>Êtes-vous sûr·e de vouloir supprimer l'exercice?</h2>
 
-        <div class="delete_buttons">
-          <button (click)="displayDeletePopup = false">Annuler</button>
-          <button (click)="confirmRemoveExercise()">Confirmer</button>
-        </div>
-      </app-popup>
-    }
-
-    <section class="date_duration">
-      <h1>Entraînement du {{ trainingSessionData.training_date | date: "dd/MM/YYYY" }}</h1>
-      <p>{{ trainingSessionData.duration }}</p>
-    </section>
-
-    <section class="description">
-      @if (displayUpdateDescription) {
-        <textarea [rows]="3" [(ngModel)]="descriptionToUpdate"></textarea>
-
-        <button (click)="updateDescription()" class="confirm_update">
-          <lucide-icon name="check" [size]="20" class="icon"></lucide-icon>
-        </button>
-      }
-      @else {
-        <p>{{ descriptionToUpdate }}</p>
-
-        <button (click)="toggleDescriptionUpdate()">
-          <lucide-icon name="pencil" [size]="16" class="icon"></lucide-icon>
-        </button>
-      }
-    </section>
-
-    <button class="add_exercise_button" (click)="addExercise()">
-      <p>Ajouter un exercice</p>
-      <lucide-icon name="circle-plus" class="icon"></lucide-icon>
-    </button>
-
-    @if (trainingSessionData.exercises.length > 0) {
-      <section class="exercises">
-        @for (exercise of trainingSessionData.exercises; track exercise.id) {
-          <article>
-            <h2>{{ exercise.exercise.exercise_name }}</h2>
-
-            <button (click)="removeExercise(exercise.id)">
-              <lucide-icon name="trash2" class="icon" [size]="17" class="icon"></lucide-icon>
-            </button>
-
-            <table>
-              <thead>
-                <tr>
-                  @for (measure of measures; track $index) {
-                    <td>
-                      {{ measure }}
-                    </td>
-                  }
-                  <td>Répétitions</td>
-                </tr>
-              </thead>
-
-              <tbody>
-                @for (series of exercise.series; track series.id) {
-                  <tr>
-                    @for (measure of series.measures; track measure.id) {
-                      <td>{{ measure.measure_quantity }} {{ measure.measure.unit }}</td>
-                    }
-
-                    <td>x {{ series.reps }}</td>
-                  </tr>
-                }
-              </tbody>
-            </table>
-          </article>
-        }
-      </section>
-    }
+      <div class="delete_buttons">
+        <button (click)="displayDeletePopup = false">Annuler</button>
+        <button (click)="confirmRemoveExercise()">Confirmer</button>
+      </div>
+    </app-popup>
   }
-  @else {
-    @if (displayDeletePopup) {
-      <app-popup (onClose)="displayDeletePopup = false">
-        <h2>Êtes-vous sûr·e de vouloir supprimer l'entraînement?</h2>
-        <h3 class="delete_training_session_subtext">Cette action est irréversible.</h3>
 
-        <div class="delete_buttons">
-          <button (click)="displayDeletePopup = false">Annuler</button>
-          <button (click)="confirmRemoveTrainingSession()">Confirmer</button>
-        </div>
-      </app-popup>
+  <section class="date_duration">
+    <h1>Entraînement du {{ trainingSessionData.training_date | date: "dd/MM/YYYY" }}</h1>
+    <p>{{ trainingSessionData.duration }}</p>
+  </section>
+
+  <section class="description">
+    @if (displayUpdateDescription) {
+      <textarea [rows]="3" [(ngModel)]="descriptionToUpdate"></textarea>
+
+      <button (click)="updateDescription()" class="confirm_update">
+        <lucide-icon name="check" [size]="20" class="icon"></lucide-icon>
+      </button>
     }
+    @else {
+      <p>{{ descriptionToUpdate }}</p>
 
-    <button class="start_session_button" (click)="startTrainingSession()">
-      <p>Démarrer une session d'entraînement</p>
-      <lucide-icon name="circle-play" class="icon"></lucide-icon>
-    </button>
+      <button (click)="toggleDescriptionUpdate()">
+        <lucide-icon name="pencil" [size]="16" class="icon"></lucide-icon>
+      </button>
+    }
+  </section>
 
-    <section class="all_training_sessions">
-      <h1>Tous les entraînements</h1>
+  <button class="add_exercise_button" (click)="addExercise()">
+    <p>Ajouter un exercice</p>
+    <lucide-icon name="circle-plus" class="icon"></lucide-icon>
+  </button>
 
-      <ul>
-        @for (session of trainingSessions; track $index) {
-          <li>
-            <a [href]="'/training-session/' + session.id">
-              <p>Entraînement du {{ session.training_date | date: "dd/MM/YYYY" }}</p>
-              @if (session.description && session.description !== "") {
-                <p>{{ session.description }}</p>
+  @if (trainingSessionData.exercises.length > 0) {
+    <section class="exercises">
+      @for (exercise of trainingSessionData.exercises; track exercise.id) {
+        <article>
+          <h2>{{ exercise.exercise.exercise_name }}</h2>
+
+          <button (click)="removeExercise(exercise.id)">
+            <lucide-icon name="trash2" class="icon" [size]="17" class="icon"></lucide-icon>
+          </button>
+
+          <table>
+            <thead>
+              <tr>
+                @for (measure of measures; track $index) {
+                  <td>
+                    {{ measure }}
+                  </td>
+                }
+                <td>Répétitions</td>
+              </tr>
+            </thead>
+
+            <tbody>
+              @for (series of exercise.series; track series.id) {
+                <tr>
+                  @for (measure of series.measures; track measure.id) {
+                    <td>{{ measure.measure_quantity }} {{ measure.measure.unit }}</td>
+                  }
+
+                  <td>x {{ series.reps }}</td>
+                </tr>
               }
-            </a>
-
-            <button (click)="removeTrainingSession(session.id)">
-              <lucide-icon name="trash2" [size]="20"></lucide-icon>
-            </button>
-          </li>
-        }
-      </ul>
+            </tbody>
+          </table>
+        </article>
+      }
     </section>
   }
 </main>

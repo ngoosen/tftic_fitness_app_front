@@ -1,0 +1,123 @@
+main {
+  display: flex;
+  flex-direction: column;
+
+  margin: 20px 10vw;
+
+  .start_session_button {
+    align-self: center;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    padding: 10px 40px;
+
+    font-size: 20px;
+
+    border-radius: 50px;
+    background-color: #a7a7a7;
+
+    .icon {
+      display: flex;
+    }
+
+    &:hover {
+      background-color: #c5c5c5;
+    }
+  }
+
+  .all_training_sessions {
+    h1{
+      margin: 20px 0;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      list-style: none;
+
+      padding: 20px;
+
+      border-radius: 5px;
+      background-color: #e6e6e6;
+
+      li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 10px;
+
+        border-radius: 5px;
+        background-color: #bebebe;
+
+        a {
+          text-decoration: none;
+          color: #000000;
+
+          p:nth-of-type(2) {
+            margin-top: 5px;
+            margin-left: 20px;
+
+            font-size: 14px;
+            color: #636363;
+          }
+
+          &:hover {
+            p:first-of-type {
+              text-decoration: underline;
+            }
+          }
+        }
+
+        button {
+          width: fit-content;
+          height: fit-content;
+
+          padding: 4px;
+
+          background-color: #ffffff;
+
+          &:hover {
+            cursor: pointer;
+            background-color: #d8d8d8;
+          }
+        }
+      }
+    }
+  }
+
+  .delete_training_session_subtext {
+    margin: 10px 0;
+    font-weight: normal;
+  }
+
+  .delete_buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+
+    width: 100%;
+
+    margin-top: 20px;
+
+    button {
+      width: fit-content;
+      height: fit-content;
+
+      padding: 5px 30px;
+
+      font-size: 18px;
+
+      border-radius: 50px;
+      background-color: #eeeeee;
+
+      &:last-of-type:not(:hover) {
+        background-color: #969696;
+      }
+    }
+  }
+}

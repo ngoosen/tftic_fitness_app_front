@@ -18,6 +18,7 @@ import { TrainingSessionComponent } from './pages/training-session/training-sess
 import { HeaderComponent } from './shared/components/header/header.component';
 import { LineChartComponent } from './shared/components/ui/line-chart/line-chart.component';
 import { PopupComponent } from './shared/components/ui/popup/popup.component';
+import { TrainingSessionsComponent } from './pages/training-sessions/training-sessions.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { PopupComponent } from './shared/components/ui/popup/popup.component';
     ExerciseComponent,
     ExercisesComponent,
     TrainingSessionComponent,
-    LineChartComponent
+    LineChartComponent,
+    TrainingSessionsComponent
   ],
   imports: [
     BrowserModule,

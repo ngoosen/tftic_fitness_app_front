@@ -10,7 +10,7 @@ import { TrainingSessionService } from '../../tools/services/training-session.se
   styleUrl: './training-session.component.scss'
 })
 export class TrainingSessionComponent {
-  trainingSessions: FullTrainingSessionData[] = [];
+  trainingSessions: FullTrainingSessionData[] = [];//
 
   trainingSessionId: string | undefined;
   trainingSessionData!: FullTrainingSessionData;
@@ -35,23 +35,7 @@ export class TrainingSessionComponent {
     if (paramId) {
       this.trainingSessionId = paramId;
       this.getSession(paramId);
-    } else {
-      const serviceId = this._trainingSessionService.currentTrainingSessionId;
-
-      if (serviceId) {
-        this._router.navigate(["/training-session", serviceId]);
-      } else {
-        this.getTrainingSessions();
-      }
     }
-  }
-
-  getTrainingSessions() {
-    this._trainingSessionService.getAllTrainingSessions().subscribe({
-      next: (result) => {
-        this.trainingSessions = result;
-      }
-    });
   }
 
   getSession(sessionId: string) {
@@ -76,18 +60,6 @@ export class TrainingSessionComponent {
     })
   }
 
-  startTrainingSession() {
-    this._trainingSessionService.startTrainingSession().subscribe({
-      next: (result) => {
-        this._trainingSessionService.setSessionId(result.id);
-        this._router.navigate(["/training-session", result.id]);
-      },
-      error: (e) => {
-        console.log(e);
-      },
-    });
-  }
-
   addExercise() {
     this._router.navigate(["/exercise"]);
   }
@@ -107,24 +79,6 @@ export class TrainingSessionComponent {
         this.displayDeletePopup = false;
         this.exerciseToDeleteId = "";
       } ,
-      error: (e) => {
-        console.log(e);
-      }
-    });
-  }
-
-  removeTrainingSession(id: string) {
-    this.displayDeletePopup = true;
-    this.trainingSessionToDeleteId = id;
-  }
-
-  confirmRemoveTrainingSession() {
-    this._trainingSessionService.deleteTrainingSession(this.trainingSessionToDeleteId).subscribe({
-      next: (result) => {
-        this.getTrainingSessions();
-        this.displayDeletePopup = false;
-        this.trainingSessionToDeleteId = "";
-      },
       error: (e) => {
         console.log(e);
       }

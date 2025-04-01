@@ -4,6 +4,7 @@ import { BrowserModule, provideClientHydration, withEventReplay } from '@angular
 
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { Bike, Check, ChevronDown, ChevronUp, CirclePlay, CirclePlus, LucideAngularModule, Minus, Pencil, Search, Trash2, User } from 'lucide-angular';
+import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './pages/admin/admin.component';
@@ -15,8 +16,8 @@ import { ExerciseComponent } from './pages/exercise/exercise.component';
 import { ExercisesComponent } from './pages/exercises/exercises.component';
 import { TrainingSessionComponent } from './pages/training-session/training-session.component';
 import { HeaderComponent } from './shared/components/header/header.component';
-import { PopupComponent } from './shared/components/ui/popup/popup.component';
 import { LineChartComponent } from './shared/components/ui/line-chart/line-chart.component';
+import { PopupComponent } from './shared/components/ui/popup/popup.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { LineChartComponent } from './shared/components/ui/line-chart/line-chart
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    BaseChartDirective,
     LucideAngularModule.pick({
       Trash2,
       Pencil,
@@ -54,6 +56,7 @@ import { LineChartComponent } from './shared/components/ui/line-chart/line-chart
   providers: [
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()),
+    provideCharts(withDefaultRegisterables()),
   ],
   bootstrap: [AppComponent]
 })

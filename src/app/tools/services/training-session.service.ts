@@ -62,8 +62,8 @@ export class TrainingSessionService {
     return this._http.get<FullTrainingSessionData>(`${this._baseUrl}/training-session/${this._userId}/${sessionId}`);
   }
 
-  getByExerciseId(exerciseId: string): Observable<TrainingSessionByExerciseId> {
-    return this._http.get<TrainingSessionByExerciseId>(`${this._baseUrl}/training-session-exercise/${exerciseId}`);
+  getByExerciseId(exerciseId: string): Observable<TrainingSessionByExerciseId[]> {
+    return this._http.get<TrainingSessionByExerciseId[]>(`${this._baseUrl}/training-session-exercise/${exerciseId}`);
   }
 
   updateTrainingSession(newSession: TrainingSession): Observable<any> {

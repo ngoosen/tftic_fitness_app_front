@@ -20,6 +20,7 @@ import { LineChartComponent } from './shared/components/ui/line-chart/line-chart
 import { PopupComponent } from './shared/components/ui/popup/popup.component';
 import { TrainingSessionsComponent } from './pages/training-sessions/training-sessions.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { FooterComponent } from './shared/components/footer/footer.component';
     TrainingSessionComponent,
     LineChartComponent,
     TrainingSessionsComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

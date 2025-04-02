@@ -1,17 +1,36 @@
 <main>
-  <h1>Créer un compte</h1>
+  @if (displayLogIn) {
+    <h1>Se connecter</h1>
 
-  <section>
-    <div>
-      <label for="email">Email :</label>
-      <input type="email" name="email" id="email">
-    </div>
-    <div>
-      <label for="password">Mot de passe :</label>
-      <input type="password" name="password" id="password">
-    </div>
+    <section>
+      <div>
+        <label for="email">Email :</label>
+        <input type="email" name="email" id="email">
+      </div>
+      <div>
+        <label for="password">Mot de passe :</label>
+        <input type="password" name="password" id="password">
+      </div>
 
-    <button class="inscription_button">S'inscrire</button>
-    <button class="i_have_an_account_button">J'ai déjà un compte</button>
-  </section>
+      <button class="inscription_button">Se connecter</button>
+      <button class="toggle_login_button" (click)="toggleLogIn()">S'inscrire</button>
+    </section>
+  }
+  @else {
+    <h1>Créer un compte</h1>
+
+    <section>
+      <div>
+        <label for="email">Email :</label>
+        <input type="email" name="email" id="email">
+      </div>
+      <div>
+        <label for="password">Mot de passe :</label>
+        <input type="password" name="password" id="password">
+      </div>
+
+      <button class="inscription_button">S'inscrire</button>
+      <button class="toggle_login_button" (click)="toggleLogIn()">J'ai déjà un compte</button>
+    </section>
+  }
 </main>

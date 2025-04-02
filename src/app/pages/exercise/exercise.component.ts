@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Exercise } from '../../models/exercise.model';
-import { AddExerciseToTrainingDTO } from '../../models/training-session.model';
+import { AddExerciseToTrainingDTO, TrainingSession } from '../../models/training-session.model';
 import { ExerciseService } from '../../tools/services/exercise.service';
 import { TrainingSessionService } from '../../tools/services/training-session.service';
 
@@ -21,6 +21,10 @@ export class ExerciseComponent {
     unit: string,
     value: number,
   }[][] = [];
+
+  displayChooseTrainingSession: boolean = false;
+  allTrainingSessions: TrainingSession[] = [];
+  selectedTrainingSessionId: string = "";
 
   constructor (
     private _activatedRoute: ActivatedRoute,
@@ -99,7 +103,27 @@ export class ExerciseComponent {
     this.enteredValues.splice(index, 1);
   }
 
-  addExerciseToTrainingSession() {
+  addExerciseToTrainingSession(sessionId?: string) {
+    if (!sessionId) {
+      const currentTrainingSessionId = this._trainingSessionService.getSessionId();
+
+      if (!currentTrainingSessionId) {
+        this._trainingSessionService.getAllTrainingSessions().subscribe({
+          next: (result) => {
+            this.allTrainingSessions = result;
+            this.displayChooseTrainingSession = true;
+          },
+          error: (e) => {
+            console.log(e);
+          },
+        });
+
+        return;
+      }
+
+      sessionId = currentTrainingSessionId;
+    }
+
     const series = this.enteredValues.map(value => {
       const reps = value.find(v => v.unit === "rep")?.value ?? 0;
       const measures = value.filter(v => v.unit !== "rep").map(v => {
@@ -120,13 +144,42 @@ export class ExerciseComponent {
       series,
     };
 
-    this._trainingSessionService.addDataToTrainingSession(newExercise).subscribe({
+    this._trainingSessionService.addDataToTrainingSession(newExercise, sessionId).subscribe({
       next: (result) => {
-        this._router.navigate(["/training-session"]);
+        this._router.navigate(["/training-session", sessionId]);
       },
       error: (e) => {
         console.log(e);
       }
     });
+  }
+
+  updateTrainingSessionSelection(event: any) {
+    this.selectedTrainingSessionId = event.target.value;
+  }
+
+  confirmTrainingSessionSelection() {
+    if (this.selectedTrainingSessionId === "") {
+      this.displayChooseTrainingSession = false;
+      return;
+    }
+
+    if (this.selectedTrainingSessionId === "new") {
+      this._trainingSessionService.startTrainingSession().subscribe({
+        next: (result) => {
+          this._trainingSessionService.setSessionId(result.id);
+          this.addExerciseToTrainingSession(result.id);
+        },
+        error: (e) => {
+          console.log(e);
+        },
+      })
+    } else {
+      this.addExerciseToTrainingSession(this.selectedTrainingSessionId);
+    }
+  }
+
+  cancelTrainingSessionSelection() {
+    this.displayChooseTrainingSession = false;
   }
 }

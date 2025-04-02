@@ -20,6 +20,19 @@ export class TrainingSessionService {
 
   setSessionId(id: string) {
     this.currentTrainingSessionId = id;
+    localStorage.setItem("currentSessionId", id);
+  }
+
+  getSessionId() {
+    if (!this.currentTrainingSessionId) {
+      const localId = localStorage.getItem("currentSessionId");
+
+      if (localId) {
+        this.currentTrainingSessionId = localId;
+      }
+    }
+
+    return this.currentTrainingSessionId;
   }
 
   startTrainingSession(): Observable<TrainingSession> {
@@ -45,6 +58,7 @@ export class TrainingSessionService {
 
     this._startTime = undefined;
     this.currentTrainingSessionId = undefined;
+    localStorage.removeItem("currentSessionId");
   }
 
   getAllTrainingSessions(): Observable<FullTrainingSessionData[]> {
@@ -83,19 +97,7 @@ export class TrainingSessionService {
     return this._http.delete(`${this._baseUrl}/training-session-exercise/${trainingSessionExerciseId}`);
   }
 
-  addDataToTrainingSession(data: AddExerciseToTrainingDTO, trainingSessionId = this.currentTrainingSessionId): Observable<AddExerciseToTrainingResult[][]> {
-    if (!trainingSessionId) {
-      this.startTrainingSession().subscribe({
-        next: (result) => {
-          this.currentTrainingSessionId = result.id;
-          trainingSessionId = result.id;
-        },
-        error: (e) => {
-          console.log(e);
-        }
-      });
-    }
-
+  addDataToTrainingSession(data: AddExerciseToTrainingDTO, trainingSessionId: string): Observable<AddExerciseToTrainingResult[][]> {
     const body = {
       training_session_id: trainingSessionId,
       exercise_id: data.exerciseId,

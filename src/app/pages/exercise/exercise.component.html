@@ -1,5 +1,25 @@
 @if (exercise) {
   <main>
+    @if (displayChooseTrainingSession) {
+      <app-popup (onClose)="cancelTrainingSessionSelection()">
+        <h1>À quel entraînement souhaitez-vous ajouter cet exercice?</h1>
+
+        <select class="popup_select" (change)="updateTrainingSessionSelection($event)">
+          <option disabled selected>Sélectionnez une session entraînement</option>
+          <option value="new">Démarrer une session d'entraînement</option>
+
+          @for (session of allTrainingSessions; track $index) {
+            <option [value]="session.id">Entraînement du {{ session.training_date | date:"dd/MM/YYYY" }}</option>
+          }
+        </select>
+
+        <section class="popup_buttons">
+          <button (click)="cancelTrainingSessionSelection()">Annuler</button>
+          <button (click)="confirmTrainingSessionSelection()">Confirmer</button>
+        </section>
+      </app-popup>
+    }
+
     <h1>{{ exercise.exercise_name }}</h1>
 
     <section class="image_description">

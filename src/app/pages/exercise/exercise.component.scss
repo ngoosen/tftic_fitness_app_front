@@ -148,4 +148,37 @@ main {
       margin-bottom: 20px;
     }
   }
+
+  .popup_select {
+    width: 100%;
+
+    padding: 5px 10px;
+
+    font-size: 14px;
+
+    border-radius: 10px;
+  }
+
+  .popup_buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+
+    width: 100%;
+
+    margin-top: 30px;
+
+    button {
+      padding: 5px 30px;
+
+      font-size: 16px;
+
+      border-radius: 50px;
+
+      &:hover {
+        background-color: #bebebe;
+      }
+    }
+  }
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import dayjs from 'dayjs';
 import { FullTrainingSessionData } from '../../models/training-session.model';
 import { TrainingSessionService } from '../../tools/services/training-session.service';
 
@@ -33,7 +34,20 @@ export class TrainingSessionsComponent {
   getTrainingSessions() {
     this._trainingSessionService.getAllTrainingSessions().subscribe({
       next: (result) => {
-        this.trainingSessions = result;
+        this.trainingSessions = result.sort((res1, res2) => {
+          const date1 = dayjs(res1.training_date);
+          const date2 = dayjs(res2.training_date);
+
+          if (date1.isBefore(date2)) {
+            return 1;
+          }
+
+          if (date1.isAfter(date2)) {
+            return -1;
+          }
+
+          return 0;
+        });
       }
     });
   }

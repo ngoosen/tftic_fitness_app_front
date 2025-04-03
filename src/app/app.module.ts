@@ -21,6 +21,7 @@ import { PopupComponent } from './shared/components/ui/popup/popup.component';
 import { TrainingSessionsComponent } from './pages/training-sessions/training-sessions.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { LoginComponent } from './pages/login/login.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { LoginComponent } from './pages/login/login.component';
     LineChartComponent,
     TrainingSessionsComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

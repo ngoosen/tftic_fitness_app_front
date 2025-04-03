@@ -1,0 +1,47 @@
+.landing_image {
+  display: flex;
+  justify-content: flex-end;
+
+  width: 100lvw;
+  height: 95lvh;
+
+  padding: 0 10lvw;
+
+  background-image: url("/img/bft-2.webp");
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    width: 50%;
+
+    h1 {
+      color: #f0f0f0;
+      font-size: 60px;
+
+      text-shadow: 5px 0 10px #000000;
+
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+
+    button {
+      margin-top: 30px;
+      margin-left: 10lvw;
+      padding: 10px 50px;
+
+      font-size: 35px;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+      border-radius: 50px;
+
+      color: #353535;
+      background-color: #f0f0f0;
+    }
+  }
+}

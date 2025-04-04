@@ -104,6 +104,11 @@ export class ExerciseComponent {
   }
 
   addExerciseToTrainingSession(sessionId?: string) {
+    if (this.enteredValues.length === 0) {
+      this.toggleSeries();
+      return;
+    }
+
     if (!sessionId) {
       const currentTrainingSessionId = this._trainingSessionService.getSessionId();
 

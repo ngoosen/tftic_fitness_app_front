@@ -137,9 +137,9 @@ section {
 
     section {
       display: flex;
-      gap: 10px;
+      gap: 30px;
 
-      width: 50%;
+      width: 70%;
 
       margin-top: 10px;
 
@@ -151,8 +151,6 @@ section {
         border-radius: 5px;
 
         &:first-of-type {
-          width: 70%;
-
           color: c.$main_light_color;
           background-color: c.$main_global_color;
 
@@ -162,7 +160,6 @@ section {
         }
 
         &:last-of-type {
-          width: 30%;
           background-color: c.$secondary_light_color;
 
           &:hover {

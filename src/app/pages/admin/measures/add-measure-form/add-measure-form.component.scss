@@ -1,113 +1,136 @@
+@use "../../../../../colors" as c;
+
 $side_margin: 100px;
 $top_margin: 20px;
 
-.toggle_button {
-  width: calc(100% - (2 * $side_margin));
+section {
+  background-color: c.$main_light_color;
 
-  margin: $top_margin $side_margin;
-  padding: 10px;
+  .toggle_button {
+    width: calc(100% - (2 * $side_margin));
 
-  font-size: 20px;
+    margin: $top_margin $side_margin;
+    padding: 10px;
 
-  border-radius: 10px;
-  background-color: #dddddd;
+    font-size: 20px;
 
-  &:hover {
-    cursor: pointer;
-    background-color: #cccccc;
+    border-radius: 10px;
+
+    color: c.$main_light_color;
+    background-color: c.$main_global_color;
+
+    &:hover {
+      cursor: pointer;
+      background-color: c.$secondary_global_color;
+    }
   }
-}
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-
-  margin: 0 calc($side_margin + 10px);
-  padding: 20px;
-
-  border-radius: 0 0 10px 10px;
-  background-color: #ffffff;
-
-  transform: translateY(-$top_margin);
-
-  $label_width: 170px;
-
-  div {
+  form {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
-    width: 50%;
+    gap: 15px;
 
-    label {
-      display: inline-block;
+    margin: 0 calc($side_margin + 10px);
+    padding: 20px;
 
-      width: $label_width;
+    border-radius: 0 0 10px 10px;
+    background-color: #ffffff;
 
-      &:hover {
-        cursor: pointer;
-      }
-    }
+    transform: translateY(-$top_margin);
 
-    input {
-      width: calc(100% - $label_width);
-      padding: 10px;
-      border-radius: 5px;
-      border: 1px solid black;
-    }
+    $label_width: 170px;
 
-    .invalid {
-      border-color: #ff0000;
-      outline: 2px solid #ff0000;
-      background-color: #ffdada;
-    }
+    div {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      width: 70%;
 
-    &:has(input.invalid)::after {
-      position: relative;
-      top: 2px;
-      left: $label_width + 5px;
+      label {
+        display: inline-block;
 
-      width: 50%;
-
-      padding: 3px 15px;
-
-      content: "Le champs est requis pour ajouter une mesure.";
-      font-size: 14px;
-
-      border-radius: 0 0 5px 5px;
-      background-color: #ffc7c7;
-    }
-  }
-
-  section {
-    display: flex;
-    gap: 20px;
-
-    width: 50%;
-
-    button {
-      padding: 10px;
-
-      font-size: 17px;
-
-      border-radius: 5px;
-
-      &:first-of-type {
-        width: 70%;
-        background-color: #7e7e7e;
+        width: $label_width;
 
         &:hover {
-          background-color: #636363;
+          cursor: pointer;
         }
       }
 
-      &:last-of-type {
-        width: 30%;
-        background-color: #a7a7a7;
+      label:has(+textarea) {
+        align-self: flex-start;
+      }
 
-        &:hover {
-          background-color: #969696;
+      input,
+      textarea,
+      select {
+        width: calc(100% - $label_width);
+        padding: 10px;
+      }
+
+      input,
+      textarea {
+        border-radius: 5px;
+        border: 1px solid black;
+      }
+
+      select {
+        border-radius: 5px;
+      }
+
+      .invalid {
+        border-color: #ff0000;
+        outline: 2px solid #ff0000;
+        background-color: #ffdada;
+      }
+
+      &:has(input.invalid)::after {
+        position: relative;
+        top: 2px;
+        left: $label_width + 5px;
+
+        width: 50%;
+
+        padding: 3px 15px;
+
+        content: "Le nom est requis pour ajouter un exercice.";
+        font-size: 14px;
+
+        border-radius: 0 0 5px 5px;
+        background-color: #ffc7c7;
+      }
+    }
+
+    section {
+      display: flex;
+      gap: 30px;
+
+      width: 70%;
+
+      margin-top: 10px;
+
+      button {
+        padding: 10px;
+
+        font-size: 17px;
+
+        border-radius: 5px;
+
+        &:first-of-type {
+          color: c.$main_light_color;
+          background-color: c.$main_global_color;
+
+          &:hover {
+            background-color: c.$secondary_global_color;
+          }
+        }
+
+        &:last-of-type {
+          background-color: c.$secondary_light_color;
+
+          &:hover {
+            background-color: rgba(c.$main_global_color, .3);
+          }
         }
       }
     }

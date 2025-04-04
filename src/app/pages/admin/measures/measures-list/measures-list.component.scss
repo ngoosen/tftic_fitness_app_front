@@ -1,6 +1,11 @@
+@use "../../../../../colors" as c;
+
 section {
-  padding: 20px 50px;
-  background-color: #d6d6d6;
+  padding: 0 50px;
+  padding-bottom: 20px;
+
+  border-radius: 0 0 5px 5px;
+  background-color: c.$main_light_color;
 
   ul {
     display: flex;
@@ -19,7 +24,9 @@ section {
       padding: 10px 20px;
 
       border-radius: 5px;
-      background-color: #b6b6b6;
+
+      color: c.$main_global_color;
+      background-color: c.$secondary_light_color;
 
       div {
         display: flex;
@@ -50,12 +57,23 @@ section {
       .actions {
         button {
           padding: 5px;
+
           border-radius: 5px;
+          background-color: c.$main_light_color;
+
+          &:hover {
+            color: c.$main_light_color;
+            background-color: rgba(c.$main_global_color, .5);
+          }
         }
 
         .confirm_update {
           color: #ffffff;
-          background-color: green;
+          background-color: #008000;
+
+          &:hover {
+            background-color: #0fa70f;
+          }
         }
       }
     }

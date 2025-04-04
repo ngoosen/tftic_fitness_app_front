@@ -9,7 +9,6 @@ main {
 
   padding: 20px 5lvw;
 
-  background-image: url("/img/Partners-homepage-1.webp");
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -92,4 +91,12 @@ main {
       text-decoration: underline;
     }
   }
+}
+
+.signin {
+  background-image: url("/img/exercices-musculation-dravel.webp");
+}
+
+.login {
+  background-image: url("/img/Partners-homepage-1.webp");
 }

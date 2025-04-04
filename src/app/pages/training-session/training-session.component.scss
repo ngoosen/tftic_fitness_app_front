@@ -1,8 +1,14 @@
+@use "../../../colors" as c;
+
 main {
   display: flex;
   flex-direction: column;
 
-  margin: 20px 10vw;
+  min-height: 80lvh;
+
+  padding: 20px 10vw;
+
+  background-color: c.$main_global_color;
 
   .add_exercise_button {
     align-self: center;
@@ -16,36 +22,58 @@ main {
     font-size: 20px;
 
     border-radius: 50px;
-    background-color: #a7a7a7;
+
+    color: c.$main_light_color;
+    background-color: c.$main_accent_color;
 
     .icon {
       display: flex;
     }
 
     &:hover {
-      background-color: #c5c5c5;
+      background-color: c.$secondary_accent_color;
     }
   }
 
-  button:not(.start_session_button):not(.add_exercise_button) {
+  button:not(.add_exercise_button) {
     width: 30px;
     height: 30px;
 
     border-radius: 5px;
-    background-color: #f7f7f7;
+    background-color: c.$main_light_color;
 
     &:hover {
-      background-color: #c5c5c5;
+      color: c.$main_light_color;
+      background-color: c.$main_global_color;
     }
   }
 
   .date_duration {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
+
+    height: 200px;
+
+    margin: 0 -10vw;
+    margin-top: -20px;
+    padding: 0 10vw;
+
+    background-image: url("/img/homme-fort-s-entrainant-salle-sport-scaled.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 
     h1 {
-      font-size: 26px;
+      color: c.$main_light_color;
+      font-size: 40px;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      @include c.text_shadow;
+    }
+
+    p {
+      font-size: 20px;
+      color: c.$main_light_color;
+      @include c.text_shadow;
     }
   }
 
@@ -58,7 +86,7 @@ main {
     padding: 20px;
 
     border-radius: 5px;
-    background-color: #e0e0e0;
+    background-color: c.$secondary_light_color;
 
     p {
       width: 90%;
@@ -89,7 +117,7 @@ main {
     padding: 10px;
 
     border-radius: 5px;
-    background-color: #eeeeee;
+    background-color: c.$main_light_color;
 
     article {
       display: flex;
@@ -99,16 +127,18 @@ main {
       padding: 10px 15px;
 
       border-radius: 5px;
-      background-color: #d1d1d1;
+      color: c.$main_global_color;
+      background-color: c.$secondary_light_color;
 
       h2 {
         margin-bottom: 10px;
 
         a {
-          color: #000000;
+          color: c.$secondary_global_color;
           text-decoration: none;
 
           &:hover {
+            color: c.$main_accent_color;
             text-decoration: underline;
           }
         }
@@ -116,6 +146,14 @@ main {
 
       table {
         width: 100%;
+
+        border-collapse: collapse;
+
+        font-size: 14px;
+      }
+
+      button:hover {
+        background-color: c.$main_accent_color;
       }
     }
   }

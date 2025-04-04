@@ -90,6 +90,11 @@ export class TrainingSessionComponent {
   }
 
   updateDescription() {
+    if (this.descriptionToUpdate === "Ajouter une description") {
+      this.toggleDescriptionUpdate();
+      return;
+    }
+
     this._trainingSessionService.updateTrainingSession({
       ...this.trainingSessionData,
       description: this.descriptionToUpdate,

@@ -28,7 +28,7 @@ main {
         color: c.$main_light_color;
         font-size: 60px;
 
-        text-shadow: 5px 0 10px #000000;
+        @include c.text_shadow;
 
         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
       }
@@ -149,6 +149,11 @@ main {
         color: c.$main_light_color;
         border-radius: 50px;
         background-color: c.$main_global_color;
+
+        a {
+          text-decoration: none;
+          color: c.$main_light_color;
+        }
 
         &:hover {
           color: #ffffff;

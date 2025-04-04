@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import dayjs from 'dayjs';
 import { Exercise } from '../../models/exercise.model';
 import { AddExerciseToTrainingDTO, TrainingSession } from '../../models/training-session.model';
 import { ExerciseService } from '../../tools/services/exercise.service';
@@ -115,7 +116,14 @@ export class ExerciseComponent {
       if (!currentTrainingSessionId) {
         this._trainingSessionService.getAllTrainingSessions().subscribe({
           next: (result) => {
-            this.allTrainingSessions = result;
+            this.allTrainingSessions = result.sort((session1, session2) => {
+              const date1 = dayjs(session1.training_date);
+              const date2 = dayjs(session2.training_date);
+
+              if (date1.isBefore(date2)) return 1;
+              if (date1.isAfter(date2)) return -1;
+              return 0;
+            });
             this.displayChooseTrainingSession = true;
           },
           error: (e) => {
@@ -165,7 +173,6 @@ export class ExerciseComponent {
 
   confirmTrainingSessionSelection() {
     if (this.selectedTrainingSessionId === "") {
-      this.displayChooseTrainingSession = false;
       return;
     }
 

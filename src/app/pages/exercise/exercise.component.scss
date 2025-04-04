@@ -228,8 +228,22 @@ main {
 
       border-radius: 50px;
 
-      &:hover {
-        background-color: #bebebe;
+      &:first-of-type {
+        color: c.$main_global_color;
+        background-color: c.$main_light_color;
+
+        &:hover {
+          background-color: rgba(c.$secondary_light_color, .5);
+        }
+      }
+
+      &:last-of-type {
+        color: c.$main_light_color;
+        background-color: c.$main_global_color;
+
+        &:hover {
+          background-color: c.$secondary_global_color;
+        }
       }
     }
   }

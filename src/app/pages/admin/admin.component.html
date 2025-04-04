@@ -1,13 +1,14 @@
 <main>
-  <h2>Administration</h2>
+  <section class="title">
+    <h1>Administration</h1>
+  </section>
 
-  <section>
+  <section class="tabs">
     <nav>
       <ul>
-        <li (click)="changeTab('exercises')">Exercices</li>
-        <li (click)="changeTab('measures')">Mesures</li>
-        <li (click)="changeTab('training_sessions')">Entraînements</li>
-        <li (click)="changeTab('users')">Utilisateurs</li>
+        <li (click)="changeTab('exercises')" [className]="displayedTab === 'exercises' ? 'selected' : ''">Exercices</li>
+        <li (click)="changeTab('measures')" [className]="displayedTab === 'measures' ? 'selected' : ''">Mesures</li>
+        <li (click)="changeTab('users')" [className]="displayedTab === 'users' ? 'selected' : ''">Utilisateurs</li>
       </ul>
     </nav>
 

@@ -1,5 +1,5 @@
 @if (exerciseToDeleteId !== "") {
-  <app-popup>
+  <app-popup (onClose)="cancelDelete()">
     <div class="delete_popup">
       <h1>Êtes-vous sûr·e de vouloir supprimer "{{ exerciseToDeleteName }}" ?</h1>
 
@@ -17,10 +17,6 @@
   <article class="search_bar">
     <label for="search">Rechercher :</label>
     <input type="text" name="search" id="search" (input)="search($event)" />
-  </article>
-
-  <article class="filters">
-    <h3>Filtres</h3>
   </article>
 
   <section class="exercices">

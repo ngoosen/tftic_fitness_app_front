@@ -1,19 +1,28 @@
+@use "../../../../../colors" as c;
+
 .main_list {
-  padding: 20px 50px;
-  background-color: #d6d6d6;
+  padding: 10px 50px;
+  background-color: c.$main_light_color;
+  border-radius: 0 0 5px 5px;
 
   > article,
   .exercices {
     margin: 10px 0;
     padding: 10px 20px;
-    border-radius: 5px;
-    background-color: #b6b6b6;
+
+    border-radius: 10px;
+
+    color: c.$main_light_color;
+    background-color: c.$main_global_color;
   }
 
   .search_bar {
     display: flex;
     align-items: center;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+
+    margin-top: 20px;
 
     label {
       font-size: 18px;
@@ -22,17 +31,17 @@
     input {
       border: none;
 
-      width: 90%;
+      width: 100%;
 
       padding: 5px 10px;
+      margin-bottom: 5px;
 
       border-radius: 5px;
-      border: 1px solid black;
-    }
-  }
 
-  .filters {
-    background-color: #b6b6b6;
+      &:focus {
+        outline: 2px solid c.$secondary_light_color;
+      }
+    }
   }
 
   .exercices {
@@ -55,7 +64,9 @@
         padding: 10px 20px;
 
         border-radius: 5px;
-        background-color: #d1d1d1;
+
+        color: c.$main_global_color;
+        background-color: c.$secondary_light_color;
 
         .exercise_basic_informations {
           display: flex;
@@ -69,7 +80,18 @@
 
             button {
               padding: 5px;
+
               border-radius: 5px;
+              background-color: c.$main_light_color;
+
+              &:hover {
+                color: c.$main_light_color;
+                background-color: rgba(c.$main_global_color, .5);
+
+                &:last-of-type {
+                  background-color: c.$main_accent_color;
+                }
+              }
             }
           }
 
@@ -134,7 +156,8 @@
                 font-size: 16px;
 
                 border-radius: 5px;
-                background-color: #b6b6b6;
+                color: c.$main_light_color;
+                background-color: c.$main_global_color;
               }
             }
 
@@ -236,9 +259,10 @@
 
   div {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 40px;
 
-    margin-top: 20px;
+    margin-top: 30px;
 
     button {
       padding: 5px 40px;
@@ -247,20 +271,19 @@
 
       border-radius: 50px;
 
-      &:first-of-type {
-        background-color: #dfdfdf;
+      background-color: c.$secondary_light_color;
 
+      &:first-of-type {
         &:hover {
-          color: #ffffff;
-          background-color: red;
+          color: c.$main_light_color;
+          background-color: c.$main_accent_color;
         }
       }
 
       &:last-of-type {
-        background-color: #b6b6b6;
-
         &:hover {
-          background-color: #a1a1a1;
+          color: c.$main_light_color;
+          background-color: c.$main_global_color;
         }
       }
     }

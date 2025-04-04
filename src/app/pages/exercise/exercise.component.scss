@@ -4,11 +4,13 @@ main {
   display: flex;
   flex-direction: column;
 
+  min-height: 78lvh;
+
   padding: 20px 5lvw;
 
   background-color: c.$main_global_color;
 
-  h1 {
+  > h1 {
     padding: 20px 5lvw;
 
     color: c.$main_global_color;
@@ -201,9 +203,14 @@ main {
     }
   }
 
+  .popup_title {
+    font-size: 30px;
+  }
+
   .popup_select {
     width: 100%;
 
+    margin: 30px 0;
     padding: 5px 10px;
 
     font-size: 14px;
@@ -218,8 +225,6 @@ main {
     gap: 50px;
 
     width: 100%;
-
-    margin-top: 30px;
 
     button {
       padding: 5px 30px;

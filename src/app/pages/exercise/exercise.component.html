@@ -2,7 +2,7 @@
   <main>
     @if (displayChooseTrainingSession) {
       <app-popup (onClose)="cancelTrainingSessionSelection()">
-        <h1>À quel entraînement souhaitez-vous ajouter cet exercice?</h1>
+        <h1 class="popup_title">À quel entraînement souhaitez-vous ajouter cet exercice?</h1>
 
         <select class="popup_select" (change)="updateTrainingSessionSelection($event)">
           <option disabled selected>Sélectionnez une session entraînement</option>

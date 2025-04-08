@@ -10,6 +10,17 @@
     </app-popup>
   }
 
+  @if (displayStopSessionPopup) {
+    <app-popup (onClose)="displayStopSessionPopup = false">
+      <h2>Arrêter la session d'entraînement?</h2>
+
+      <div class="delete_buttons">
+        <button (click)="displayStopSessionPopup = false">Annuler</button>
+        <button (click)="stopSession()">Confirmer</button>
+      </div>
+    </app-popup>
+  }
+
   <section class="date_duration">
     <h1>Entraînement du {{ trainingSessionData.training_date | date: "dd/MM/YYYY" }}</h1>
     <p>{{ trainingSessionData.duration }} 00:42:45</p>
@@ -33,10 +44,11 @@
   </section>
 
   <section class="actions">
-    <button class="stop_session_button">
-      <p>Terminer l'entraînement</p>
-      <!-- TODO: implement stop session -->
-    </button>
+    @if (isCurrentSession) {
+      <button class="stop_session_button" (click)="toggleStopSessionPopup()">
+        <p>Terminer l'entraînement</p>
+      </button>
+    }
 
     <button class="add_exercise_button" (click)="addExercise()">
       <p>Ajouter un exercice</p>

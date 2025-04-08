@@ -22,7 +22,7 @@ export class TrainingSessionsComponent {
   ) { }
 
   ngOnInit() {
-    const serviceId = this._trainingSessionService.currentTrainingSessionId;
+    const serviceId = this._trainingSessionService.getSessionId();
 
     if (serviceId) {
       this._router.navigate(["/training-session", serviceId]);

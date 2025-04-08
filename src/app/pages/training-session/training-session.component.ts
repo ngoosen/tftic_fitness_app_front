@@ -23,6 +23,9 @@ export class TrainingSessionComponent {
   displayUpdateDescription: boolean = false;
   descriptionToUpdate: string = "Ajouter une description";
 
+  isCurrentSession: boolean = false;
+  displayStopSessionPopup: boolean = false;
+
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
@@ -35,6 +38,7 @@ export class TrainingSessionComponent {
     if (paramId) {
       this.trainingSessionId = paramId;
       this.getSession(paramId);
+      this.isCurrentSession = this._trainingSessionService.getSessionId() === paramId;
     }
   }
 
@@ -107,5 +111,16 @@ export class TrainingSessionComponent {
         console.log(e);
       },
     });
+  }
+
+  toggleStopSessionPopup() {
+    this.displayStopSessionPopup = !this.displayStopSessionPopup;
+  }
+
+  stopSession() {
+    this._trainingSessionService.stopTrainingSession();
+    this.displayStopSessionPopup = false;
+    this.isCurrentSession = false;
+    this._router.navigate(["training-session"]);
   }
 }

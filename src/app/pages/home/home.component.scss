@@ -1,0 +1,234 @@
+@use "../../../colors" as c;
+
+main {
+  .landing_image {
+    display: flex;
+    justify-content: flex-end;
+
+    width: 100%;
+    height: 95lvh;
+
+    padding: 0 10lvw;
+
+    background-image: url("/img/bft-2.webp");
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+
+      width: 50%;
+
+      h1 {
+        color: c.$main_light_color;
+        font-size: 60px;
+
+        @include c.text_shadow;
+
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      }
+
+      button {
+        margin-top: 30px;
+        margin-left: 10lvw;
+        padding: 10px 50px;
+
+        border-radius: 50px;
+
+        background-color: c.$main_light_color;
+        box-shadow: 0 0 10px 0 #303030;
+
+        transition: all .2s;
+
+        a {
+          text-decoration: none;
+          font-size: 35px;
+          font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+          color: c.$main_global_color;
+
+          transition: all .2s;
+        }
+
+        &:hover {
+          background-color: c.$main_accent_color;
+
+          a {
+            color: c.$main_light_color;
+          }
+        }
+      }
+    }
+  }
+
+  .presentation {
+    h2 {
+      padding: 20px 5lvw;
+
+      color: c.$main_accent_color;
+      font-size: 30px;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+
+    p {
+      margin: 10px 5lvw;
+      color: c.$main_global_color;
+    }
+
+    .presentation_image {
+      width: 100%;
+      height: 200px;
+
+      margin-top: 25px;
+
+      background-image: url("/img/Bienfaits-musculation-femme-scaled-e1655114634372.jpg");
+      background-position: 50%;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    gap: 20px;
+
+    margin: 50px 5lvw;
+
+    article {
+      padding: 30px 40px;
+
+      border-radius: 10px;
+
+      color: c.$main_light_color;
+      background-color: c.$main_global_color;
+
+      h3 {
+        margin-bottom: 20px;
+
+        color: c.$main_accent_color;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-size: 24px;
+        text-align: center;
+      }
+    }
+  }
+
+  .cta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 50px 5lvw;
+    background-color: c.$main_light_color;
+
+    h2 {
+      color: c.$main_global_color;
+      font-size: 25px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    article {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      button {
+        padding: 10px 50px;
+
+        font-size: 30px;
+
+        color: c.$main_light_color;
+        border-radius: 50px;
+        background-color: c.$main_global_color;
+
+        a {
+          text-decoration: none;
+          color: c.$main_light_color;
+        }
+
+        &:hover {
+          color: #ffffff;
+          background-color: c.$secondary_global_color;
+        }
+
+        &:first-of-type {
+          background-color: c.$main_accent_color;
+
+          &:hover {
+            background-color: c.$secondary_accent_color;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  main {
+    .landing_image {
+      padding: 0 10lvw;
+      padding-top: 50lvh;
+
+      background-position: 40% center;
+      background-attachment: scroll;
+
+      div {
+        justify-content: flex-start;
+        align-items: flex-end;
+
+        width: 100%;
+
+        h1 {
+          font-size: 35px;
+          text-align: right;
+        }
+
+        button {
+          a {
+            font-size: 30px;
+          }
+        }
+      }
+    }
+
+    .presentation {
+      h2 {
+        padding-left: 10lvw;
+        padding-right: 10lvw;
+
+        font-size: 25px;
+      }
+
+      p {
+        margin-left: 10lvw;
+        margin-right: 10lvw;
+      }
+    }
+
+    .cards {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(3, 1fr);
+    }
+
+    .cta {
+      h2 {
+        margin-bottom: 30px;
+      }
+
+      article {
+        button {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}

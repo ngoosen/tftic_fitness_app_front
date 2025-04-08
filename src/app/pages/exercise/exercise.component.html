@@ -2,7 +2,7 @@
   <main>
     @if (displayChooseTrainingSession) {
       <app-popup (onClose)="cancelTrainingSessionSelection()">
-        <h1>À quel entraînement souhaitez-vous ajouter cet exercice?</h1>
+        <h1 class="popup_title">À quel entraînement souhaitez-vous ajouter cet exercice?</h1>
 
         <select class="popup_select" (change)="updateTrainingSessionSelection($event)">
           <option disabled selected>Sélectionnez une session entraînement</option>
@@ -23,63 +23,65 @@
     <h1>{{ exercise.exercise_name }}</h1>
 
     <section class="image_description">
-      <img [src]="exercise.image" alt="" />
-      <ol>
-        @for (step of steps; track $index) {
-          <li>{{ step }}</li>
-        }
-      </ol>
-    </section>
+      <article>
+        <img [src]="exercise.image" alt="" />
+        <ol>
+          @for (step of steps; track $index) {
+            <li>{{ step }}</li>
+          }
+        </ol>
+      </article>
 
-    @if (!displaySeries) {
-      <button class="add_to_training_button" (click)="toggleSeries()">Ajouter à l'entraînement</button>
-    }
-    @else {
-      <section class="series_section">
-        <table>
-          <thead>
-            @if (enteredValues.length > 0) {
-              @for (measure of exercise.trackable_measures; track $index) {
-                <td>{{ measure.measure_name }}</td>
-              }
-              <td>Répétitions</td>
-            }
-          </thead>
-
-          <tbody>
-            @for (series of enteredValues; track $index; let id = $index) {
-              <tr>
-                @for (measure of series; track measure.id) {
-                  <td>
-                    <input type="number" [(ngModel)]="measure.value" min="0" />
-                    <label>{{ measure.unit }}</label>
-                  </td>
+      @if (!displaySeries) {
+        <button class="add_to_training_button" (click)="toggleSeries()">Ajouter à l'entraînement</button>
+      }
+      @else {
+        <section class="series_section">
+          <table>
+            <thead>
+              @if (enteredValues.length > 0) {
+                @for (measure of exercise.trackable_measures; track $index) {
+                  <td>{{ measure.measure_name }}</td>
                 }
+                <td>Répétitions</td>
+              }
+            </thead>
 
-                <td>
-                  <button (click)="removeSeries(id)">
-                    <lucide-icon name="minus" [size]="10"></lucide-icon>
-                  </button>
-                </td>
-              </tr>
-            }
-          </tbody>
-        </table>
+            <tbody>
+              @for (series of enteredValues; track $index; let id = $index) {
+                <tr>
+                  @for (measure of series; track measure.id) {
+                    <td>
+                      <input type="number" [(ngModel)]="measure.value" min="0" />
+                      <label>{{ measure.unit }}</label>
+                    </td>
+                  }
 
-        <button (click)="addSeries()" class="add_series_button">
-          Ajouter une série
-          <lucide-icon name="circle-plus" [size]="18" class="icon"></lucide-icon>
-        </button>
+                  <td>
+                    <button (click)="removeSeries(id)">
+                      <lucide-icon name="minus" [size]="10"></lucide-icon>
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
 
-        <article class="actions">
-          <button (click)="cancel()">Annuler</button>
-          <button (click)="addExerciseToTrainingSession()">
-            Terminé
-            <lucide-icon name="check" [size]="16" class="icon"></lucide-icon>
+          <button (click)="addSeries()" class="add_series_button">
+            Ajouter une série
+            <lucide-icon name="circle-plus" [size]="18" class="icon"></lucide-icon>
           </button>
-        </article>
-      </section>
-    }
+
+          <article class="actions">
+            <button (click)="cancel()">Annuler</button>
+            <button (click)="addExerciseToTrainingSession()">
+              Terminé
+              <lucide-icon name="check" [size]="16" class="icon"></lucide-icon>
+            </button>
+          </article>
+        </section>
+      }
+    </section>
 
     <section class="stats">
       <h2>Votre progression</h2>

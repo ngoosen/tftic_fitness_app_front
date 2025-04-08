@@ -1,12 +1,44 @@
+@use "../../../colors" as c;
+
 main {
-  margin: 0 10vw;
+  min-height: 95lvh;
+
+  padding: 20px 10lvw;
+
+  background-color: c.$main_global_color;
+
+  .title {
+    display: flex;
+    align-items: center;
+
+    height: 200px;
+
+    margin: 0 -10vw;
+    margin-top: -20px;
+    padding: 0 10vw;
+
+    background-image: url("/img/ten-types-of-workouts.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    h1 {
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      font-size: 60px;
+      color: c.$main_light_color;
+      @include c.text_shadow;
+    }
+  }
 
   .search_bar {
     margin: 20px 0;
     padding: 15px 30px;
 
     border-radius: 10px;
-    background-color: #b6b6b6;
+
+    font-weight: bold;
+
+    color: c.$main_global_color;
+    background-color: c.$secondary_light_color;
 
     input {
       appearance: none;
@@ -22,7 +54,7 @@ main {
       border-radius: 5px;
 
       &:focus {
-        outline: 2px solid #8a8a8a;
+        outline: 2px solid c.$main_global_color;
       }
     }
   }
@@ -30,23 +62,25 @@ main {
   .exercises_list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    gap: 15px;
 
-    padding: 20px;
+    padding: 30px;
 
     border-radius: 10px;
-    background-color: #dbdbdb;
+    background-color: c.$secondary_light_color;
 
     a {
       height: 200px;
 
       padding: 10px;
 
-      color: #000000;
+      color: c.$main_light_color;
       text-decoration: none;
 
       border-radius: 5px;
-      background-color: #747474;
+      background-color: c.$main_global_color;
+
+      transition: all .15s;
 
       article {
         display: flex;
@@ -57,7 +91,7 @@ main {
 
         img {
           max-width: 100%;
-          height: 80%;
+          height: 70%;
 
           object-fit: contain;
           object-position: 50%;
@@ -69,6 +103,34 @@ main {
         h2 {
           font-size: 1em;
           text-align: center;
+        }
+      }
+
+      &:hover {
+        background-color: c.$main_accent_color;
+      }
+    }
+
+    .no_result {
+      grid-column-start: 1;
+      grid-column-end: 5;
+      text-align: center;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 20px 5lvw;
+
+    .exercises_list {
+      grid-template-columns: 1fr 1fr;
+
+      a {
+        article {
+          h2 {
+            font-size: .9em;
+          }
         }
       }
     }

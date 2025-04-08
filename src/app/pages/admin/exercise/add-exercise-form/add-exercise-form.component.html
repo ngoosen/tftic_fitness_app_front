@@ -1,46 +1,48 @@
-<button (click)="toggleForm()" class="toggle_button">Ajouter un exercice</button>
+<section>
+  <button (click)="toggleForm()" class="toggle_button">Ajouter un exercice</button>
 
-@if (displayForm) {
-  <form>
-    <div>
-      <label for="exercise_name">Nom :</label>
-      <input type="text" name="exercise_name" id="exercise_name" [(ngModel)]="name" [ngClass]="nameInvalidClass" (input)="nameInvalidClass = ''" />
-    </div>
-    <div>
-      <label for="exercise_image">Image :</label>
-      <input type="text" name="exercise_image" id="exercise_image" [(ngModel)]="imageLink" />
-    </div>
-    <div>
-      <label for="exercise_description">Description :</label>
-      <textarea name="exercise_description" id="exercise_description" maxlength="1000" [rows]="4" [(ngModel)]="description"></textarea>
-    </div>
-    <div>
-      <label for="exercise_measures">Mesures :</label>
-      <select name="exercise_measures" id="exercise_measures" (change)="addValueToMeasures($event)">
-        <option disabled [defaultSelected]="true">Sélectionnez une mesure</option>
-
-        @for (measure of availableMeasures; track $index) {
-          <option [value]="measure.id">{{ measure.measure_name }}</option>
-        }
-      </select>
-    </div>
-
-    @if (measures.length > 0) {
-      <div class="selected_measures_list">
-        <ul>
-          @for (measure of measures; track $index) {
-            <li>
-              <p>{{ measure.measure_name }}</p>
-              <button (click)="removeValueFromMeasures(measure.id)">x</button>
-            </li>
-          }
-        </ul>
+  @if (displayForm) {
+    <form>
+      <div>
+        <label for="exercise_name">Nom :</label>
+        <input type="text" name="exercise_name" id="exercise_name" [(ngModel)]="name" [ngClass]="nameInvalidClass" (input)="nameInvalidClass = ''" />
       </div>
-    }
+      <div>
+        <label for="exercise_image">Image :</label>
+        <input type="text" name="exercise_image" id="exercise_image" [(ngModel)]="imageLink" />
+      </div>
+      <div>
+        <label for="exercise_description">Description :</label>
+        <textarea name="exercise_description" id="exercise_description" maxlength="1000" [rows]="4" [(ngModel)]="description"></textarea>
+      </div>
+      <div>
+        <label for="exercise_measures">Mesures :</label>
+        <select name="exercise_measures" id="exercise_measures" (change)="addValueToMeasures($event)">
+          <option disabled [defaultSelected]="true">Sélectionnez une mesure</option>
 
-    <section>
-      <button type="button" (click)="addExercise()">Ajouter</button>
-      <button type="button" (click)="resetForm()">Annuler</button>
-    </section>
-  </form>
-}
+          @for (measure of availableMeasures; track $index) {
+            <option [value]="measure.id">{{ measure.measure_name }}</option>
+          }
+        </select>
+      </div>
+
+      @if (measures.length > 0) {
+        <div class="selected_measures_list">
+          <ul>
+            @for (measure of measures; track $index) {
+              <li>
+                <p>{{ measure.measure_name }}</p>
+                <button (click)="removeValueFromMeasures(measure.id)">x</button>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+
+      <section>
+        <button type="button" (click)="addExercise()">Ajouter</button>
+        <button type="button" (click)="resetForm()">Annuler</button>
+      </section>
+    </form>
+  }
+</section>

@@ -12,7 +12,7 @@
 
   <section class="date_duration">
     <h1>Entraînement du {{ trainingSessionData.training_date | date: "dd/MM/YYYY" }}</h1>
-    <p>{{ trainingSessionData.duration }}</p>
+    <p>{{ trainingSessionData.duration }} 00:42:45</p>
   </section>
 
   <section class="description">
@@ -32,10 +32,17 @@
     }
   </section>
 
-  <button class="add_exercise_button" (click)="addExercise()">
-    <p>Ajouter un exercice</p>
-    <lucide-icon name="circle-plus" class="icon"></lucide-icon>
-  </button>
+  <section class="actions">
+    <button class="stop_session_button">
+      <p>Terminer l'entraînement</p>
+      <!-- TODO: implement stop session -->
+    </button>
+
+    <button class="add_exercise_button" (click)="addExercise()">
+      <p>Ajouter un exercice</p>
+      <lucide-icon name="circle-plus" class="icon"></lucide-icon>
+    </button>
+  </section>
 
   @if (trainingSessionData.exercises.length > 0) {
     <section class="exercises">

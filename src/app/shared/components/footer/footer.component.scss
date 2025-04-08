@@ -1,3 +1,5 @@
+@use "../../../../colors" as c;
+
 footer {
   position: absolute;
   bottom: 0;
@@ -10,7 +12,7 @@ footer {
 
   padding: 20px;
 
-  background-color: #808080;
+  background-color: c.$main_global_color;
 
   .copyright {
     display: flex;
@@ -21,12 +23,15 @@ footer {
     p {
       font-size: 14px;
 
+      color: rgba(c.$main_light_color, .5);
+
       a {
-        color: #383838;
+        color: c.$main_light_color;
         text-decoration: none;
 
         &:hover {
           cursor: pointer;
+          color: c.$main_accent_color;
           text-decoration: underline;
         }
       }

@@ -1,15 +1,37 @@
+@use "../../../colors" as c;
+
 main {
-  margin: 20px 100px;
-  padding: 20px 30px;
+  min-height: 78.5lvh;
 
-  background-color: #969696;
+  padding: 20px 10lvw;
 
-  h2 {
-    margin-bottom: 20px;
+  background-color: c.$main_global_color;
+
+  .title {
+    display: flex;
+    align-items: center;
+
+    height: 200px;
+
+    margin: 0 -10lvw;
+    margin-top: -20px;
+    padding: 0 10lvw;
+
+    background-image: url("/img/Trainingsberatung_copyright_activfitness-3.jpg");
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    h1 {
+      color: c.$main_light_color;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      font-size: 60px;
+      @include c.text_shadow;
+    }
   }
 
-  section {
-    background-color: #bbbbbb;
+  .tabs {
+    margin-top: 20px;
 
     nav {
       ul {
@@ -19,18 +41,58 @@ main {
         list-style: none;
 
         li {
-          width: 25%;
+          width: 33%;
 
-          padding: 15px 20px;
+          padding: 10px 20px;
 
+          font-size: 20px;
           text-align: center;
 
-          border: 1px solid black;
           border-radius: 15px 15px 0 0;
+
+          color: c.$main_light_color;
+          background-color: c.$main_accent_color;
+          box-shadow: inset 0 -1px 3px 0 rgba(0, 0, 0, 0.4);
 
           &:hover {
             cursor: pointer;
-            background-color: #b3b3b3;
+            background-color: c.$secondary_accent_color;
+          }
+        }
+
+        .selected {
+          font-weight: bold;
+          color: c.$main_global_color;
+          background-color: c.$main_light_color;
+          box-shadow: none;
+
+          &:hover {
+            background-color: c.$main_light_color;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 20px 5lvw;
+
+    .title {
+      margin: 0 -5lvw;
+      padding: 0 5lvw;
+
+      h1 {
+        font-size: 55px;
+      }
+    }
+
+    .tabs {
+      nav {
+        ul {
+          li {
+            font-size: 16px;
           }
         }
       }

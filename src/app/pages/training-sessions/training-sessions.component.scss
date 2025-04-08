@@ -1,8 +1,16 @@
+@use "../../../colors" as c;
+
 main {
   display: flex;
   flex-direction: column;
 
-  margin: 20px 10vw;
+  padding: 20px 10vw;
+
+  background-color: c.$main_global_color;
+
+  h1 {
+    color: c.$main_light_color;
+  }
 
   .start_session_button {
     align-self: center;
@@ -16,14 +24,18 @@ main {
     font-size: 20px;
 
     border-radius: 50px;
-    background-color: #a7a7a7;
+
+    color: c.$main_light_color;
+    background-color: c.$main_accent_color;
+
+    transition: all .15s;
 
     .icon {
       display: flex;
     }
 
     &:hover {
-      background-color: #c5c5c5;
+      background-color: c.$secondary_accent_color;
     }
   }
 
@@ -42,7 +54,7 @@ main {
       padding: 20px;
 
       border-radius: 5px;
-      background-color: #e6e6e6;
+      background-color: c.$main_light_color;
 
       li {
         display: flex;
@@ -52,22 +64,23 @@ main {
         padding: 10px;
 
         border-radius: 5px;
-        background-color: #bebebe;
+        background-color: c.$secondary_light_color;
 
         a {
           text-decoration: none;
-          color: #000000;
+          color: c.$secondary_global_color;
 
           p:nth-of-type(2) {
             margin-top: 5px;
             margin-left: 20px;
 
             font-size: 14px;
-            color: #636363;
+            color: rgba(c.$main_global_color, .5);
           }
 
           &:hover {
             p:first-of-type {
+              color: c.$secondary_accent_color;
               text-decoration: underline;
             }
           }
@@ -84,7 +97,8 @@ main {
 
           &:hover {
             cursor: pointer;
-            background-color: #d8d8d8;
+            color: c.$main_light_color;
+            background-color: c.$main_accent_color;
           }
         }
       }
@@ -114,10 +128,15 @@ main {
       font-size: 18px;
 
       border-radius: 50px;
-      background-color: #eeeeee;
+      background-color: c.$secondary_light_color;
 
-      &:last-of-type:not(:hover) {
-        background-color: #969696;
+      &:hover {
+        color: c.$main_light_color;
+        background-color: c.$main_global_color;
+
+        &:last-of-type {
+          background-color: c.$main_accent_color;
+        }
       }
     }
   }

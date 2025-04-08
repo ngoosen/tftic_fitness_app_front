@@ -1,10 +1,18 @@
 <main>
+  <section class="title">
+    <h1>Exercices</h1>
+  </section>
+
   <section class="search_bar">
     <p>Rechercher:</p>
     <input type="text" (input)="search($event)" />
   </section>
 
   <section class="exercises_list">
+    @if (displayedExercises.length === 0) {
+      <p class="no_result">Aucun résultat correspondant.</p>
+    }
+
     @for (exercise of displayedExercises; track $index) {
       <a [href]="`/exercise/${exercise.id}`">
         <article>

@@ -111,6 +111,9 @@ export class LineChartComponent {
                 tension: 0.1,
                 pointHoverRadius: 5,
                 pointHitRadius: 5,
+                borderColor: "#d82929",
+                backgroundColor: "#d829294b",
+                fill: true,
               });
             }
           });

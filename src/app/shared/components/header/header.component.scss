@@ -1,19 +1,20 @@
-$header_background_color: #808080;
+@use "../../../../_colors.scss" as c;
 
 header {
   position: sticky;
   top: 0;
+  z-index: 1;
 
   display: flex;
-  justify-content: space-between;
   align-items: center;
 
   height: 60px;
 
   padding: 0 30px;
-  background-color: $header_background_color;
 
-  .logo {
+  background-color: c.$main_global_color;
+
+  .menu {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,93 +23,140 @@ header {
     width: 40px;
 
     border-radius: 5px;
-    color: #000000;
-    background-color: #ffffff;
+    color: c.$main_global_color;
+    background-color: c.$main_light_color;
 
     &:hover {
       cursor: pointer;
     }
   }
 
-  nav {
-    height: 100%;
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
-    ul {
-      display: flex;
-      align-items: center;
+    text-decoration: none;
+    color: c.$main_light_color;
 
-      height: 100%;
+    margin: 0 auto;
 
-      list-style: none;
+    p {
+      font-size: 25px;
+    }
 
-      li {
-        display: flex;
-        align-items: center;
-
-        height: 100%;
-
-        padding: 0 20px;
-
-        border: solid $header_background_color;
-        border-width: 3px 0;
-
-        a {
-          color: black;
-          text-decoration: none;
-        }
-
-        &:hover {
-          cursor: pointer;
-          border-bottom: 3px solid #000000;
-        }
-      }
+    &:hover {
+      text-decoration: underline;
     }
   }
 
+  .icon {
+    display: flex;
+  }
+}
+
+.drop_down_menu {
+  position: fixed;
+  z-index: 1;
+
+  height: 100lvh;
+  width: 100lvw;
+
+  padding: 20px 10lvw;
+
+  background-color: c.$secondary_global_color;
+
   .user {
+    display: flex;
+    justify-content: center;
+
     .logged_in {
       display: flex;
+      justify-content: center;
       align-items: center;
+
+      width: 100%;
+
+      padding-bottom: 10px;
+
+      border-bottom: 1px solid c.$main_light_color;
+
+      .username {
+        color: c.$main_light_color;
+        font-size: 20px;
+      }
 
       .user_avatar {
         margin-left: 15px;
         padding: 5px;
 
         border-radius: 50px;
-        border: 2px solid $header_background_color;
-        outline: 1px solid $header_background_color;
+        border: 2px solid c.$main_global_color;
+        outline: 1px solid c.$main_global_color;
       }
 
       &:hover {
         cursor: pointer;
 
         .username{
-          color: #ffffff;
           text-decoration: underline;
         }
 
         .user_avatar {
-          outline-color: #ffffff;
+          outline-color: c.$main_light_color;
         }
       }
     }
 
     .login_button {
-      padding: 5px 20px;
+      padding: 5px 30px;
 
-      font-size: 14px;
+      font-size: 25px;
 
       border-radius: 50px;
 
-      background-color: #d4d4d4;
+      background-color: c.$main_light_color;
 
       a {
-        color: #000000;
+        color: c.$main_global_color;
         text-decoration: none;
       }
 
       &:hover {
-        background-color: #ffffff;
+        background-color: c.$main_accent_color;
+
+        a {
+          color: c.$main_light_color;
+        }
+      }
+    }
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    margin-top: 30px;
+
+    list-style: none;
+
+    a {
+      text-decoration: none;
+      color: c.$main_light_color;
+      font-size: 30px;
+
+      li {
+        padding: 5px 20px;
+        border-radius: 10px;
+      }
+
+      &:hover {
+        color: c.$main_global_color;
+
+        li {
+          background-color: c.$main_light_color;
+        }
       }
     }
   }

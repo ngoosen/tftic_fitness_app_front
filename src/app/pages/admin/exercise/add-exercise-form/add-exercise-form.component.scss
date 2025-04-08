@@ -1,157 +1,212 @@
-$side_margin: 100px;
+@use "../../../../../colors" as c;
+
+$side_margin: 50px;
 $top_margin: 20px;
 
-.toggle_button {
-  width: calc(100% - (2 * $side_margin));
+$mobile_side_margin: 20px;
+$mobile_top_margin: 20px;
 
-  margin: $top_margin $side_margin;
-  padding: 10px;
+section {
+  background-color: c.$main_light_color;
 
-  font-size: 20px;
+  .toggle_button {
+    width: calc(100% - (2 * $side_margin));
 
-  border-radius: 10px;
-  background-color: #dddddd;
+    margin: $top_margin $side_margin;
+    padding: 10px;
 
-  &:hover {
-    cursor: pointer;
-    background-color: #cccccc;
+    font-size: 20px;
+
+    border-radius: 10px;
+
+    color: c.$main_light_color;
+    background-color: c.$main_global_color;
+
+    &:hover {
+      cursor: pointer;
+      background-color: c.$secondary_global_color;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+
+    margin: 0 calc($side_margin + 10px);
+    padding: 20px;
+
+    border-radius: 0 0 10px 10px;
+    background-color: #ffffff;
+
+    transform: translateY(-$top_margin);
+
+    $label_width: 120px;
+
+    div {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      width: 70%;
+
+      label {
+        display: inline-block;
+
+        width: $label_width;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      label:has(+textarea) {
+        align-self: flex-start;
+      }
+
+      input,
+      textarea,
+      select {
+        width: calc(100% - $label_width);
+        padding: 10px;
+      }
+
+      input,
+      textarea {
+        border-radius: 5px;
+        border: 1px solid black;
+      }
+
+      select {
+        border-radius: 5px;
+      }
+
+      .invalid {
+        border-color: #ff0000;
+        outline: 2px solid #ff0000;
+        background-color: #ffdada;
+      }
+
+      &:has(input.invalid)::after {
+        position: relative;
+        top: 2px;
+        left: $label_width + 5px;
+
+        width: 50%;
+
+        padding: 3px 15px;
+
+        content: "Le nom est requis pour ajouter un exercice.";
+        font-size: 14px;
+
+        border-radius: 0 0 5px 5px;
+        background-color: #ffc7c7;
+      }
+    }
+
+    .selected_measures_list {
+      padding-left: $label_width;
+
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        list-style: none;
+
+        li {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+
+          padding-left: 20px;
+          padding-right: 10px;
+
+          font-size: 12px;
+
+          border-radius: 3px;
+
+          color: c.$main_light_color;
+          background-color: rgba(c.$main_global_color, .5);
+
+          button {
+            padding: 5px;
+            color: c.$main_light_color;
+            background-color: transparent;
+          }
+        }
+      }
+    }
+
+    section {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+
+      width: 100%;
+
+      margin-top: 10px;
+
+      background-color: transparent;
+
+      button {
+        padding: 10px 30px;
+
+        font-size: 17px;
+
+        border-radius: 5px;
+
+        &:first-of-type {
+          color: c.$main_light_color;
+          background-color: c.$main_global_color;
+
+          &:hover {
+            background-color: c.$secondary_global_color;
+          }
+        }
+
+        &:last-of-type {
+          background-color: c.$secondary_light_color;
+
+          &:hover {
+            background-color: rgba(c.$main_global_color, .3);
+          }
+        }
+      }
+    }
   }
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-
-  margin: 0 calc($side_margin + 10px);
-  padding: 20px;
-
-  border-radius: 0 0 10px 10px;
-  background-color: #ffffff;
-
-  transform: translateY(-$top_margin);
-
-  $label_width: 120px;
-
-  div {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    width: 50%;
-
-    label {
-      display: inline-block;
-
-      width: $label_width;
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
-
-    label:has(+textarea) {
-      align-self: flex-start;
-    }
-
-    input,
-    textarea,
-    select {
-      width: calc(100% - $label_width);
-      padding: 10px;
-    }
-
-    input,
-    textarea {
-      border-radius: 5px;
-      border: 1px solid black;
-    }
-
-    .invalid {
-      border-color: #ff0000;
-      outline: 2px solid #ff0000;
-      background-color: #ffdada;
-    }
-
-    &:has(input.invalid)::after {
-      position: relative;
-      top: 2px;
-      left: $label_width + 5px;
-
-      width: 50%;
-
-      padding: 3px 15px;
-
-      content: "Le nom est requis pour ajouter un exercice.";
-      font-size: 14px;
-
-      border-radius: 0 0 5px 5px;
-      background-color: #ffc7c7;
-    }
-  }
-
-  .selected_measures_list {
-    padding-left: $label_width;
-
-    ul {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-
-      list-style: none;
-
-      li {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-
-        padding-left: 20px;
-        padding-right: 10px;
-
-        font-size: 12px;
-
-        border-radius: 3px;
-        background-color: #d4d4d4;
-
-        button {
-          padding: 5px 10px;
-          background-color: transparent;
-        }
-      }
-    }
-  }
-
+@media (max-width: 600px) {
   section {
-    display: flex;
-    gap: 10px;
+    .toggle_button {
+      width: calc(100% - (2 * $mobile_side_margin));
+      margin: $mobile_top_margin $mobile_side_margin;
+    }
 
-    width: 50%;
+    form {
+      margin: 0 calc($mobile_side_margin + 10px);
 
-    margin-top: 10px;
+      $mobile_label_width: 87px;
 
-    button {
-      padding: 10px;
+      div {
+        width: 100%;
 
-      font-size: 17px;
+        label {
+          width: $mobile_label_width;
+          font-size: 14px;
+        }
 
-      border-radius: 5px;
-
-      &:first-of-type {
-        width: 70%;
-        background-color: #7e7e7e;
-
-        &:hover {
-          background-color: #636363;
+        input,
+        textarea,
+        select {
+          width: calc(100% - $mobile_label_width);
+          padding: 10px;
         }
       }
 
-      &:last-of-type {
-        width: 30%;
-        background-color: #a7a7a7;
-
-        &:hover {
-          background-color: #969696;
-        }
+      .selected_measures_list {
+        padding-left: $mobile_label_width;
       }
     }
   }

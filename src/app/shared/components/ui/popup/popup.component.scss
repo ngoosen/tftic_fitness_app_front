@@ -31,3 +31,9 @@
   border-radius: 10px;
   background-color: #ffffff;
 }
+
+@media (max-width: 600px) {
+  .box {
+    padding: 25px;
+  }
+}

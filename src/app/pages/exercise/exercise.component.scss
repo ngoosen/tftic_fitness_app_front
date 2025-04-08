@@ -253,3 +253,35 @@ main {
     }
   }
 }
+
+@media (max-width: 600px) {
+  main {
+    .image_description {
+      article {
+        img,
+        ol {
+          width: 100%;
+
+          li {
+            margin: 10px 6lvw;
+          }
+        }
+      }
+
+      .series_section {
+        .actions {
+          gap: 10px;
+        }
+      }
+    }
+
+    .popup_title {
+      font-size: 20px;
+      margin: 0;
+    }
+
+    .popup_buttons {
+      gap: 20px;
+    }
+  }
+}

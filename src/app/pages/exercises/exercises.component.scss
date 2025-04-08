@@ -3,7 +3,7 @@
 main {
   min-height: 95lvh;
 
-  padding: 20px 10vw;
+  padding: 20px 10lvw;
 
   background-color: c.$main_global_color;
 
@@ -115,6 +115,24 @@ main {
       grid-column-start: 1;
       grid-column-end: 5;
       text-align: center;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 20px 5lvw;
+
+    .exercises_list {
+      grid-template-columns: 1fr 1fr;
+
+      a {
+        article {
+          h2 {
+            font-size: .9em;
+          }
+        }
+      }
     }
   }
 }

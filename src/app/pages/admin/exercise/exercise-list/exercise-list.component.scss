@@ -289,3 +289,53 @@
     }
   }
 }
+
+@media (max-width: 600px) {
+  .main_list {
+    padding: 10px 20px;
+
+    .exercices {
+      > ul {
+        > li {
+          .exercise_basic_informations {
+            input {
+              width: 50%;
+              font-size: 14px;
+            }
+          }
+
+          .exercise_details {
+            flex-wrap: wrap;
+            gap: 0;
+
+            font-size: 14px;
+
+            input {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .delete_popup {
+    width: 100%;
+
+    h1 {
+      font-size: 18px;
+    }
+
+    div {
+      flex-direction: column;
+      gap: 10px;
+
+      button {
+        &:first-of-type {
+          color: c.$main_light_color;
+          background-color: c.$main_accent_color;
+        }
+      }
+    }
+  }
+}

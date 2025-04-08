@@ -3,6 +3,9 @@
 $side_margin: 50px;
 $top_margin: 20px;
 
+$mobile_side_margin: 20px;
+$mobile_top_margin: 20px;
+
 section {
   background-color: c.$main_light_color;
 
@@ -166,6 +169,41 @@ section {
             background-color: rgba(c.$main_global_color, .3);
           }
         }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  section {
+    .toggle_button {
+      width: calc(100% - (2 * $mobile_side_margin));
+      margin: $mobile_top_margin $mobile_side_margin;
+    }
+
+    form {
+      margin: 0 calc($mobile_side_margin + 10px);
+
+      $mobile_label_width: 87px;
+
+      div {
+        width: 100%;
+
+        label {
+          width: $mobile_label_width;
+          font-size: 14px;
+        }
+
+        input,
+        textarea,
+        select {
+          width: calc(100% - $mobile_label_width);
+          padding: 10px;
+        }
+      }
+
+      .selected_measures_list {
+        padding-left: $mobile_label_width;
       }
     }
   }

@@ -8,8 +8,13 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   displayLoggedInUser: boolean = false;
+  displayDropDownMenu: boolean = false;
 
   toggleLoggedIn() {
     this.displayLoggedInUser = !this.displayLoggedInUser;
+  }
+
+  toggleMenu() {
+    this.displayDropDownMenu = !this.displayDropDownMenu;
   }
 }

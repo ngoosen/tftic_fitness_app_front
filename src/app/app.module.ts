@@ -3,7 +3,7 @@ import { FormsModule } from "@angular/forms";
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { Bike, Check, ChevronDown, ChevronUp, CirclePlay, CirclePlus, LucideAngularModule, Minus, Pencil, Search, Trash2, User } from 'lucide-angular';
+import { Check, ChevronDown, ChevronUp, CirclePlay, CirclePlus, Dumbbell, LucideAngularModule, Menu, Minus, Pencil, Search, Trash2, User } from 'lucide-angular';
 import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,14 +14,14 @@ import { AddMeasureFormComponent } from './pages/admin/measures/add-measure-form
 import { MeasuresListComponent } from './pages/admin/measures/measures-list/measures-list.component';
 import { ExerciseComponent } from './pages/exercise/exercise.component';
 import { ExercisesComponent } from './pages/exercises/exercises.component';
+import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
 import { TrainingSessionComponent } from './pages/training-session/training-session.component';
+import { TrainingSessionsComponent } from './pages/training-sessions/training-sessions.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { LineChartComponent } from './shared/components/ui/line-chart/line-chart.component';
 import { PopupComponent } from './shared/components/ui/popup/popup.component';
-import { TrainingSessionsComponent } from './pages/training-sessions/training-sessions.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
-import { LoginComponent } from './pages/login/login.component';
-import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +55,8 @@ import { HomeComponent } from './pages/home/home.component';
       Check,
       Minus,
       CirclePlus,
-      Bike,
+      Dumbbell,
+      Menu,
       User,
       Search,
       CirclePlay

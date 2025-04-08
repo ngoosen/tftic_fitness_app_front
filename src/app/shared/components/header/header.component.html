@@ -1,37 +1,42 @@
 <header>
-  <a href="/">
-    <div class="logo">
-      <lucide-icon name="bike"></lucide-icon>
-    </div>
-  </a>
+  <div class="menu" (click)="toggleMenu()">
+    <lucide-icon name="menu" size="30" class="icon"></lucide-icon>
+  </div>
 
-  <nav>
+  <a class="logo" href="/">
+    <p>FitnessApp</p>
+    <lucide-icon name="dumbbell" size="25" class="icon"></lucide-icon>
+  </a>
+</header>
+
+@if (displayDropDownMenu) {
+  <nav class="drop_down_menu">
+    <section class="user">
+      @if (displayLoggedInUser) {
+        <section class="logged_in">
+          <p (click)="toggleLoggedIn()" class="username">Jane Doe</p>
+          <button (click)="toggleLoggedIn()" class="user_avatar">
+            <lucide-icon name="user"></lucide-icon>
+          </button>
+        </section>
+      }
+      @else {
+        <button class="login_button" (click)="toggleLoggedIn()">
+          <a href="/login">Se connecter</a>
+        </button>
+      }
+    </section>
+
     <ul>
-      <li>
-        <a href="/exercise">Exercises</a>
-      </li>
-      <li>
-        <a href="/training-session">Entraînement</a>
-      </li>
-      <li>
-        <a href="/admin">Admin</a>
-      </li>
+      <a href="/exercise" (click)="toggleMenu()">
+        <li>Exercises</li>
+      </a>
+      <a href="/training-session" (click)="toggleMenu()">
+        <li>Entraînement</li>
+      </a>
+      <a href="/admin" (click)="toggleMenu()">
+        <li>Admin</li>
+      </a>
     </ul>
   </nav>
-
-  <section class="user">
-    @if (displayLoggedInUser) {
-      <section class="logged_in">
-        <p (click)="toggleLoggedIn()" class="username">Jane Doe</p>
-        <button (click)="toggleLoggedIn()" class="user_avatar">
-          <lucide-icon name="user"></lucide-icon>
-        </button>
-      </section>
-    }
-    @else {
-      <button class="login_button">
-        <a href="/login">Se connecter</a>
-      </button>
-    }
-  </section>
-</header>
+}

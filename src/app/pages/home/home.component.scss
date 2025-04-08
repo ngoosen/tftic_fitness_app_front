@@ -171,3 +171,66 @@ main {
     }
   }
 }
+
+@media (max-width: 600px) {
+  main {
+    .landing_image {
+      height: 90lvh;
+
+      padding: 0 10lvw;
+      padding-top: 50lvh;
+
+      background-position: 40% center;
+      background-attachment: scroll;
+
+      div {
+        justify-content: flex-start;
+        align-items: flex-end;
+
+        width: 100%;
+
+        h1 {
+          font-size: 35px;
+          text-align: right;
+        }
+
+        button {
+          a {
+            font-size: 30px;
+          }
+        }
+      }
+    }
+
+    .presentation {
+      h2 {
+        padding-left: 10lvw;
+        padding-right: 10lvw;
+
+        font-size: 25px;
+      }
+
+      p {
+        margin-left: 10lvw;
+        margin-right: 10lvw;
+      }
+    }
+
+    .cards {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(3, 1fr);
+    }
+
+    .cta {
+      h2 {
+        margin-bottom: 30px;
+      }
+
+      article {
+        button {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}

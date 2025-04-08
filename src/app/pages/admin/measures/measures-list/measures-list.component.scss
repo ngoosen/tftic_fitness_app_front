@@ -18,6 +18,7 @@ section {
     li {
       display: flex;
       justify-content: space-between;
+      align-items: center;
 
       width: 100%;
 
@@ -74,6 +75,41 @@ section {
           &:hover {
             background-color: #0fa70f;
           }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  section {
+    padding: 20px 5lvw;
+
+    ul {
+      li {
+        div {
+          p,
+          input {
+            font-size: 14px;
+
+            &:first-of-type {
+              width: 90px;
+            }
+
+            &:last-of-type {
+              width: 110px;
+            }
+          }
+        }
+
+        p,
+        input {
+          font-size: 14px;
+          width: 110px;
+        }
+
+        > p {
+          width: auto;
         }
       }
     }

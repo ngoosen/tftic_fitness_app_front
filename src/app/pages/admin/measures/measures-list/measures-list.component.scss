@@ -66,6 +66,11 @@ section {
             color: c.$main_light_color;
             background-color: rgba(c.$main_global_color, .5);
           }
+
+          &:last-of-type:hover {
+            color: c.$main_light_color;
+            background-color: c.$main_accent_color;
+          }
         }
 
         .confirm_update {
@@ -75,6 +80,43 @@ section {
           &:hover {
             background-color: #0fa70f;
           }
+        }
+      }
+    }
+  }
+}
+.delete_popup {
+  h2 {
+    font-size: 20px;
+  }
+
+  div {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+
+    margin-top: 30px;
+
+    button {
+      padding: 5px 40px;
+
+      font-size: 20px;
+
+      border-radius: 50px;
+
+      background-color: c.$secondary_light_color;
+
+      &:first-of-type {
+        &:hover {
+          color: c.$main_light_color;
+          background-color: c.$main_accent_color;
+        }
+      }
+
+      &:last-of-type {
+        &:hover {
+          color: c.$main_light_color;
+          background-color: c.$main_global_color;
         }
       }
     }
@@ -110,6 +152,26 @@ section {
 
         > p {
           width: auto;
+        }
+      }
+    }
+  }
+
+  .delete_popup {
+    width: 100%;
+
+    h2 {
+      font-size: 18px;
+    }
+
+    div {
+      flex-direction: column;
+      gap: 10px;
+
+      button {
+        &:first-of-type {
+          color: c.$main_light_color;
+          background-color: c.$main_accent_color;
         }
       }
     }

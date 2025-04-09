@@ -10,13 +10,18 @@ import { Measure } from '../../../../models/measure.model';
 export class MeasuresListComponent {
   @Input() measures: Measure[] = [];
   @Output() onUpdate: EventEmitter<Measure>;
+  @Output() onDelete: EventEmitter<string>;
 
   measureToUpdateId: string = "";
   measureToUpdateName: string = "";
   measureToUpdateUnit: string = "";
 
+  measureToDeleteId: string = "";
+  measureToDeleteName: string = "";
+
   constructor () {
     this.onUpdate = new EventEmitter<Measure>;
+    this.onDelete = new EventEmitter<string>;
   }
 
   toggleUpdate(measureId: string) {
@@ -55,5 +60,20 @@ export class MeasuresListComponent {
     })
 
     this.toggleUpdate(this.measureToUpdateId);
+  }
+
+  toggleDelete(measureId: string, measureName: string) {
+    this.measureToDeleteId = measureId;
+    this.measureToDeleteName = measureName;
+  }
+
+  confirmDelete() {
+    this.onDelete.emit(this.measureToDeleteId);
+    this.cancelDelete();
+  }
+
+  cancelDelete() {
+    this.measureToDeleteId = "";
+    this.measureToDeleteName = "";
   }
 }

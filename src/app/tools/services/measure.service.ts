@@ -26,4 +26,8 @@ export class MeasureService {
       unit: newMeasure.unit,
     });
   }
+
+  deleteMeasure(measureId: string) {
+    return this._http.delete(`${this.baseUrl}/measure/${measureId}`);
+  }
 }

@@ -1,3 +1,16 @@
+@if (measureToDeleteName !== "") {
+  <app-popup (onClose)="cancelDelete()">
+    <div class="delete_popup">
+      <h2>Êtes-vous sûr·e de vouloir supprimer la mesure "{{ measureToDeleteName }}" ?</h2>
+
+      <div class="actions">
+        <button (click)="confirmDelete()">Supprimer</button>
+        <button (click)="cancelDelete()">Annuler</button>
+      </div>
+    </div>
+  </app-popup>
+}
+
 <section>
   <h2>Liste des mesures</h2>
 
@@ -39,6 +52,9 @@
                 <lucide-icon name="pencil" [size]="18"></lucide-icon>
               </button>
             }
+            <button (click)="toggleDelete(measure.id, measure.measure_name)">
+              <lucide-icon name="trash-2" [size]="18"></lucide-icon>
+            </button>
           </div>
         </li>
       }

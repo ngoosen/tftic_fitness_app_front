@@ -122,4 +122,15 @@ export class AdminComponent {
       },
     });
   }
+
+  deleteMeasure(measureId: string) {
+    this._measureService.deleteMeasure(measureId).subscribe({
+      next: (result) => {
+        this.getMeasures();
+      },
+      error: (e) => {
+        console.log(e);
+      },
+    });
+  }
 }

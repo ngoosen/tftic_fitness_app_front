@@ -62,8 +62,9 @@ export class TrainingSessionService {
     const seconds = Math.round(diff / 1000);
     const minutes = Math.round(seconds / 60);
     const hours = Math.round(minutes / 60);
+    const adjustedSeconds = seconds - (minutes * 60);
 
-    const duration = `${("0" + hours).slice(-2)}:${("0" + minutes).slice(-2)}:${("0" + seconds).slice(-2)}`
+    const duration = `${("0" + hours).slice(-2)}:${("0" + minutes).slice(-2)}:${("0" + adjustedSeconds).slice(-2)}`
 
     this._http.patch(`${this._baseUrl}/training-session/${this.currentTrainingSessionId}`, { duration }).subscribe({
       next: (result) => {

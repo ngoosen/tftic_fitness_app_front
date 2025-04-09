@@ -16,18 +16,16 @@ export class HeaderComponent {
 
   ngOnInit() {
     this.userIsAdmin = this._authService.isAdmin;
+    this.displayLoggedInUser = this._authService.isAdmin;
 
     if (!this.userIsAdmin) {
       const isAdmin = localStorage.getItem("isAdmin");
 
       if (isAdmin) {
         this.userIsAdmin = isAdmin === "true";
+        this.displayLoggedInUser = isAdmin === "true";
       }
     }
-  }
-
-  toggleLoggedIn() {
-    this.displayLoggedInUser = !this.displayLoggedInUser;
   }
 
   toggleMenu() {

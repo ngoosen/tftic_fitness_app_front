@@ -14,14 +14,14 @@
     <section class="user">
       @if (displayLoggedInUser) {
         <section class="logged_in">
-          <p (click)="toggleLoggedIn()" class="username">Jane Doe</p>
-          <button (click)="toggleLoggedIn()" class="user_avatar">
+          <p class="username">Jane Doe</p>
+          <button class="user_avatar">
             <lucide-icon name="user"></lucide-icon>
           </button>
         </section>
       }
       @else {
-        <button class="login_button" (click)="toggleLoggedIn()">
+        <button class="login_button">
           <a href="/login">Se connecter</a>
         </button>
       }

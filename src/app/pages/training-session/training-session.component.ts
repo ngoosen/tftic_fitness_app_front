@@ -121,6 +121,5 @@ export class TrainingSessionComponent {
     this._trainingSessionService.stopTrainingSession();
     this.displayStopSessionPopup = false;
     this.isCurrentSession = false;
-    this._router.navigate(["training-session"]);
   }
 }

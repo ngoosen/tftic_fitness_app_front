@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import dayjs, { Dayjs } from "dayjs";
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environments';
@@ -15,7 +16,10 @@ export class TrainingSessionService {
 
   currentTrainingSessionId: string | undefined;
 
-  constructor(private _http: HttpClient) { }
+  constructor(
+    private _http: HttpClient,
+    private _router: Router,
+  ) { }
 
   setUserId(id: string) {
     this._userId = id;
@@ -53,14 +57,28 @@ export class TrainingSessionService {
 
   stopTrainingSession() {
     const now = dayjs();
-    const diff = now.diff(this._startTime); // format in milliseconds
-    console.log("🚀 ~ TrainingSessionService ~ stopTrainingSession ~ diff:", diff);
+    const diff = now.diff(this._startTime);
 
-    //TODO: update training session data
+    const seconds = Math.round(diff / 1000);
+    const minutes = Math.round(seconds / 60);
+    const hours = Math.round(minutes / 60);
 
-    this._startTime = undefined;
-    this.currentTrainingSessionId = undefined;
-    localStorage.removeItem("currentSessionId");
+    const duration = `${("0" + hours).slice(-2)}:${("0" + minutes).slice(-2)}:${("0" + seconds).slice(-2)}`
+
+    this._http.patch(`${this._baseUrl}/training-session/${this.currentTrainingSessionId}`, { duration }).subscribe({
+      next: (result) => {
+        console.log(result);
+      },
+      error: (e) => {
+        console.log(e);
+      },
+      complete: () => {
+        this._startTime = undefined;
+        this.currentTrainingSessionId = undefined;
+        localStorage.removeItem("currentSessionId");
+        this._router.navigate(["training-session"]);
+      }
+    });
   }
 
   getAllTrainingSessions(): Observable<FullTrainingSessionData[]> {

@@ -86,6 +86,7 @@ export class LoginComponent {
     this.enteredEmail = "";
     this.enteredPassword = "";
     this.enteredUsername = "";
+    this.errors = [];
     this.displayLogIn = !this.displayLogIn;
   }
 }

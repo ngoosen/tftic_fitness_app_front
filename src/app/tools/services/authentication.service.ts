@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environments';
 import { User } from '../../models/user.model';
+import { TrainingSessionService } from './training-session.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,26 @@ export class AuthenticationService {
   userId: string | undefined;
   isAdmin: boolean = false;
 
-  constructor(private _http: HttpClient) { }
+  constructor(
+    private _http: HttpClient,
+    private _trainingService: TrainingSessionService,
+  ) { }
+
+  ngOnInit() {
+    const userId = localStorage.getItem("userId");
+    console.log("🚀 ~ AuthenticationService ~ ngOnInit ~ userId:", userId);
+    const isAdmin = localStorage.getItem("isAdmin");
+    console.log("🚀 ~ AuthenticationService ~ ngOnInit ~ isAdmin:", isAdmin);
+
+    if (userId) {
+      this.userId = userId;
+      this._trainingService.setUserId(userId);
+    }
+
+    if (isAdmin) {
+      this.isAdmin = isAdmin === "true";
+    }
+  }
 
   register(username: string, email: string, password: string): Observable<User> {
     return this._http.post<User>(`${this._baseUrl}/user/register`, {
@@ -32,5 +52,8 @@ export class AuthenticationService {
   setUserId(id: string, admin: boolean) {
     this.userId = id;
     this.isAdmin = admin;
+
+    localStorage.setItem("userId", id);
+    localStorage.setItem("isAdmin", admin ? "true" : "false");
   }
 }

@@ -34,9 +34,11 @@
       <a href="/training-session" (click)="toggleMenu()">
         <li>Entraînement</li>
       </a>
-      <a href="/admin" (click)="toggleMenu()">
-        <li>Admin</li>
-      </a>
+      @if (userIsAdmin) {
+        <a href="/admin" (click)="toggleMenu()">
+          <li>Admin</li>
+        </a>
+      }
     </ul>
   </nav>
 }

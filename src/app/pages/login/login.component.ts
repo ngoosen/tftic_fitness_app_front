@@ -50,6 +50,7 @@ export class LoginComponent {
         this._authService.setUserId(result.id, result.isAdmin);
         this._trainingService.setUserId(result.id);
         this._router.navigate(["/"]);
+        window.location.reload();
       },
       error: (e) => {
         this.errors.push(e.error.message);
@@ -79,6 +80,7 @@ export class LoginComponent {
         this._authService.setUserId(result.id, result.isAdmin);
         this._trainingService.setUserId(result.id);
         this._router.navigate(["/"]);
+        window.location.reload();
       },
       error: (e) => {
         this.errors.push(e.error.message);

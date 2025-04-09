@@ -2,9 +2,12 @@
   <section class="landing_image">
     <div>
       <h1>Débloquez votre potentiel dès maintenant</h1>
-      <button>
-        <a href="/login">Je m'inscris</a>
-      </button>
+
+      @if (!isLoggedIn) {
+        <button>
+          <a href="/login">Je m'inscris</a>
+        </button>
+      }
     </div>
   </section>
 

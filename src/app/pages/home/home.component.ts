@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from '../../tools/services/authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -7,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+  isLoggedIn: boolean = false;
 
+  constructor(private _authService: AuthenticationService) { }
+
+  ngOnInit() {
+    const userId = this._authService.getUserId();
+
+    if (userId) {
+      this.isLoggedIn = userId !== "";
+    }
+  }
 }

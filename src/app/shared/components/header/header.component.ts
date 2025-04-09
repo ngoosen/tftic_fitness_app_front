@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../../../tools/services/authentication.service';
 
 @Component({
@@ -12,7 +13,10 @@ export class HeaderComponent {
   displayDropDownMenu: boolean = false;
   userIsAdmin: boolean = false;
 
-  constructor(private _authService: AuthenticationService) { }
+  constructor(
+    private _authService: AuthenticationService,
+    private _router: Router,
+  ) { }
 
   ngOnInit() {
     this.userIsAdmin = this._authService.isAdmin;
@@ -30,5 +34,12 @@ export class HeaderComponent {
 
   toggleMenu() {
     this.displayDropDownMenu = !this.displayDropDownMenu;
+  }
+
+  logoutUser() {
+    this._authService.logout();
+    this.displayDropDownMenu = false;
+    this._router.navigate(["/"]);
+    window.location.reload();
   }
 }

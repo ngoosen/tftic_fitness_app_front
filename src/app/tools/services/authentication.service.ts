@@ -74,4 +74,11 @@ export class AuthenticationService {
 
     return this._userId;
   }
+
+  logout() {
+    this._userId = undefined;
+    this.isAdmin = false;
+    localStorage.removeItem("userId");
+    localStorage.removeItem("isAdmin");
+  }
 }

@@ -15,7 +15,7 @@
       @if (displayLoggedInUser) {
         <section class="logged_in">
           <p class="username">Jane Doe</p>
-          <button class="user_avatar">
+          <button class="user_avatar" (click)="logoutUser()">
             <lucide-icon name="user"></lucide-icon>
           </button>
         </section>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { authenticationGuard } from './authentication.guard';
 import { AdminComponent } from './pages/admin/admin.component';
 import { ExerciseComponent } from './pages/exercise/exercise.component';
 import { ExercisesComponent } from './pages/exercises/exercises.component';
@@ -10,7 +11,7 @@ import { TrainingSessionsComponent } from './pages/training-sessions/training-se
 
 const routes: Routes = [
   { path: "", component: HomeComponent, },
-  { path: "admin", component: AdminComponent, },
+  { path: "admin", component: AdminComponent, canActivate: [authenticationGuard] },
   { path: "exercise", component: ExercisesComponent, },
   { path: "exercise/:id", component: ExerciseComponent, },
   { path: "training-session", component: TrainingSessionsComponent, },

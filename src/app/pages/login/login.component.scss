@@ -73,6 +73,17 @@ main {
         background-color: c.$secondary_accent_color;
       }
     }
+
+    .errors {
+      flex-direction: column;
+      gap: 5px;
+
+      margin: -10px 0;
+
+      p {
+        color: c.$main_accent_color;
+      }
+    }
   }
 
   .toggle_login_button {

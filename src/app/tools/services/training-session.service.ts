@@ -13,10 +13,13 @@ export class TrainingSessionService {
   private _startTime: Dayjs | undefined;
   private _userId: string = "6755600D-0004-F011-94F5-005056A76538";
 
-  // currentTrainingSessionId: string | undefined = "3D2947FC-2A0E-F011-94F9-005056A76538";
   currentTrainingSessionId: string | undefined;
 
   constructor(private _http: HttpClient) { }
+
+  setUserId(id: string) {
+    this._userId = id;
+  }
 
   setSessionId(id: string) {
     this.currentTrainingSessionId = id;
@@ -40,7 +43,6 @@ export class TrainingSessionService {
       training_date: new Date(),
       duration: "",
       description: "",
-      //TODO: update user id
       user: this._userId,
     };
 
@@ -62,22 +64,18 @@ export class TrainingSessionService {
   }
 
   getAllTrainingSessions(): Observable<FullTrainingSessionData[]> {
-    //TODO: update user id
     return this._http.get<FullTrainingSessionData[]>(`${this._baseUrl}/training-session/${this._userId}`);
   }
 
   getCurrentTrainingSession(): Observable<FullTrainingSessionData> {
-    //TODO: update user id
     return this._http.get<FullTrainingSessionData>(`${this._baseUrl}/training-session/${this._userId}/${this.currentTrainingSessionId}`);
   }
 
   getTrainingSessionById(sessionId: string): Observable<FullTrainingSessionData> {
-    //TODO: update user id
     return this._http.get<FullTrainingSessionData>(`${this._baseUrl}/training-session/${this._userId}/${sessionId}`);
   }
 
   deleteTrainingSession(trainingSessionId: string): Observable<any> {
-    //TODO: update user id
     return this._http.delete(`${this._baseUrl}/training-session/${this._userId}/${trainingSessionId}`);
   }
 

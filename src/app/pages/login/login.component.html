@@ -5,14 +5,20 @@
 
       <div>
         <label for="email">Email :</label>
-        <input type="email" name="email" id="email">
+        <input type="email" name="email" id="email" [(ngModel)]="enteredEmail" (input)="clearErrors()" required>
       </div>
       <div>
         <label for="password">Mot de passe :</label>
-        <input type="password" name="password" id="password">
+        <input type="password" name="password" id="password" [(ngModel)]="enteredPassword" (input)="clearErrors()" required>
       </div>
 
-      <button class="inscription_button">Se connecter</button>
+      <div class="errors">
+        @for (error of errors; track $index) {
+          <p>{{ error }}</p>
+        }
+      </div>
+
+      <button class="inscription_button" (click)="login()">Se connecter</button>
       <button class="toggle_login_button" (click)="toggleLogIn()">S'inscrire</button>
     </section>
   }
@@ -21,15 +27,25 @@
       <h1>Créer un compte</h1>
 
       <div>
+        <label for="username">Nom d'utilisateur :</label>
+        <input type="text" name="username" id="username" [(ngModel)]="enteredUsername" (input)="clearErrors()" required>
+      </div>
+      <div>
         <label for="email">Email :</label>
-        <input type="email" name="email" id="email">
+        <input type="email" name="email" id="email" [(ngModel)]="enteredEmail" (input)="clearErrors()" required>
       </div>
       <div>
         <label for="password">Mot de passe :</label>
-        <input type="password" name="password" id="password">
+        <input type="password" name="password" id="password" [(ngModel)]="enteredPassword" (input)="clearErrors()" required>
       </div>
 
-      <button class="inscription_button">S'inscrire</button>
+      <div class="errors">
+        @for (error of errors; track $index) {
+          <p>{{ error }}</p>
+        }
+      </div>
+
+      <button class="inscription_button" (click)="register()">S'inscrire</button>
       <button class="toggle_login_button" (click)="toggleLogIn()">J'ai déjà un compte</button>
     </section>
   }

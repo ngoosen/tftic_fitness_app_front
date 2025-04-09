@@ -8,16 +8,25 @@ export const authenticationGuard: CanActivateFn = (route, state) => {
   const trainingService = inject(TrainingSessionService);
   const router = inject(Router);
 
-  const userId = localStorage.getItem("userId");
-  const isAdmin = localStorage.getItem("isAdmin");
+  let userId = authService.getUserId();
+  let isAdmin = authService.isAdmin;
 
-  if (userId) {
-    authService.userId = userId;
-    trainingService.setUserId(userId);
+  if (!userId) {
+    const localValue = localStorage.getItem("userId");
+
+    if (localValue) {
+      userId = localValue;
+      authService.setUserId(userId, false);
+    }
   }
 
-  if (isAdmin) {
-    authService.isAdmin = isAdmin === "true";
+  if (!isAdmin) {
+    const localValue = localStorage.getItem("isAdmin");
+
+    if (localValue) {
+      authService.setUserId(userId ?? "", localValue === "true");
+      isAdmin = localValue === "true";
+    }
   }
 
   if (route.routeConfig?.path === "admin" && !authService.isAdmin) {

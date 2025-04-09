@@ -24,6 +24,14 @@ export class LoginComponent {
     private _trainingService: TrainingSessionService,
   ) { }
 
+  ngOnInit() {
+    const userId = this._authService.getUserId();
+
+    if (userId && userId !== "") {
+      this._router.navigate(["/"]);
+    }
+  }
+
   login() {
     if (this.enteredEmail === "" || this.enteredPassword === "") {
       if (this.enteredEmail === "" && !this.errors.includes("Veuillez entrer votre email.")) {

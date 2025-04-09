@@ -10,7 +10,7 @@ import { TrainingSessionService } from './training-session.service';
 })
 export class AuthenticationService {
   private _baseUrl = environment.apiUrl;
-  userId: string | undefined;
+  private _userId: string | undefined;
   isAdmin: boolean = false;
 
   constructor(
@@ -25,7 +25,7 @@ export class AuthenticationService {
     console.log("🚀 ~ AuthenticationService ~ ngOnInit ~ isAdmin:", isAdmin);
 
     if (userId) {
-      this.userId = userId;
+      this._userId = userId;
       this._trainingService.setUserId(userId);
     }
 
@@ -50,10 +50,28 @@ export class AuthenticationService {
   }
 
   setUserId(id: string, admin: boolean) {
-    this.userId = id;
+    this._userId = id;
     this.isAdmin = admin;
 
     localStorage.setItem("userId", id);
     localStorage.setItem("isAdmin", admin ? "true" : "false");
+  }
+
+  getUserId() {
+    if (!this._userId || this._userId === "") {
+      const userId = localStorage.getItem("userId");
+      const isAdmin = localStorage.getItem("isAdmin");
+
+      if (userId) {
+        this._userId = userId;
+        this._trainingService.setUserId(userId);
+      }
+
+      if (isAdmin) {
+        this.isAdmin = isAdmin === "true";
+      }
+    }
+
+    return this._userId;
   }
 }
